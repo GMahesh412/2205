@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testclasses><trainingfacades><testclass>com.techdenali.facades.suggestion.DefaultSimpleSuggestionFacadeIntegrationTest</testclass><testclass>com.techdenali.facades.suggestion.impl.DefaultSimpleSuggestionFacadeTest</testclass></trainingfacades></testclasses>

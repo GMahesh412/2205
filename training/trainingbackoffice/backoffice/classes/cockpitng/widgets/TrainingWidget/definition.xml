@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+   id="com.techdenali.backoffice.widgets.trainingwidget">
+   <view src="trainingwidget.zul" />
+   <controller class="com.techdenali.backoffice.widgets.TrainingController" id="vm" />
+   <sockets>
+      <input id="nodeSelected" type="java.lang.Object"/>
+      <output id="selectPerspectiveById" type="java.lang.String"/>
+   </sockets>
+</widget-definition>

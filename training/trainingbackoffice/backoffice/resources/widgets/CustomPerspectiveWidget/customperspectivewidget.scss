@@ -1,0 +1,13 @@
+@charset "utf-8";
+@import "./support/customperspectivewidget-variables.scss";
+
+.cw-labelstyle
+{
+	color: $customperspective-label-text-color;
+}
+
+.customperspective-container {
+	background: $customperspective-container-background;
+	font-family: $customperspective-container-font-family;
+	font-size: $customperspective-container-font-size;
+}

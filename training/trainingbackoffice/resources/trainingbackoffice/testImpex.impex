@@ -1,0 +1,654 @@
+########################### user Group privileges impexes######################################
+  
+$START_USERRIGHTS       ;                    ;                          ;                              ;                                  ;   ;   ;   ;   ;  ;
+Type                    ; UID                ; MemberOfGroups           ; Password                     ; Target                           ; read; change; create; remove ;change_perm
+UserGroup               ; testEmployeeRole   ;                          ;                              ;                                  ;   ;   ;   ;   ;  
+#Catalog
+						;                    ;                          ;                              ; Catalog                          ; + ; + ; - ; - ; ;
+                        ;                    ;                          ;                              ; CatalogVersion                      ; + ; + ; - ; - ; ; 
+                        ;                    ;                          ;                              ; Product                          ; + ; + ; + ;  ; ; 
+                        ;                    ;                          ;                              ; Category                          ; + ; - ; - ; - ; ; 
+                        ;                    ;                          ;                              ; Unit                              ; + ; - ; - ; - ; ; 
+                        ;                    ;                          ;                              ; ClassificationClass              ; + ; - ; - ; - ; ; 
+					    ;                    ;                          ;                              ; Feature List                      ;+;+;+;+;-; 
+					    ;                    ;                          ;                              ; ClassificationAttribute                      ;+;+;+;+;-; 
+
+#MultiMedia
+					    ;                    ;                          ;                              ; MultiMedia                      ; + ; + ; + ; - ; ; 
+                        ;                    ;                          ;                              ; Media                            ;+;+;+;-;-; 
+                        ;                    ;                          ;                              ; MediaContainer                     ; + ; + ; + ; - ; ; 
+                        ;                    ;                          ;                              ; MediaFolder                      ; + ; + ; + ; - ; ; 
+					    ;                    ;                          ;                              ; MediaFormat                      ; + ; + ; + ; - ; ; 
+
+						
+#Order	
+                        ;                    ;                          ;                              ; Orders                              ; + ; - ; - ; - ; ; 
+                        ;                    ;                          ;                              ; Quotes                              ; + ; - ; - ; - ; ; 
+						
+#Marketing
+                        ;                    ;                          ;                              ; Marketing                      ; + ; - ; - ; - ; ; 
+                        ;                    ;                          ;                              ; PromotionSourceRule                      ; + ; - ; - ; - ; ; 
+					    ;                    ;                          ;                              ; Coupon Management                      ; + ; - ; - ; - ; ; 
+					    ;                    ;                          ;                              ; AbstractCoupon                      ; + ; - ; - ; - ; ; 
+
+						
+#User
+					    ;                    ;                          ;                              ; User                          ; + ; +; + ;  ; ; 
+					    ;                    ;                          ;                              ; Employees                          ; + ; +; + ;  ; ; 
+					    ;                    ;                          ;                              ; Employee                          ; + ;+; + ;  ; ; 
+					    ;                    ;                          ;                              ; Customers                          ; + ;+; + ;  ; ; 
+					    ;                    ;                          ;                              ; Customer                          ; + ;+; + ;  ; ; 
+                        ;                    ;                          ;                              ; B2BCustomer                  ;+; + ; - ; - ; ; 
+
+#Prices
+                        ;                    ;                          ;                              ; Prices                          ;+;+;+;  ; ; 
+                        ;                    ;                          ;                              ; PriceRow                         ;+;+;+;  ; ; 
+                        ;                    ;                          ;                              ; Taxes                          ;+;+;+;; ; 
+                        ;                    ;                          ;                              ; Tax                          ;+;+;+;; ; 
+                        ;                    ;                          ;                              ; TaxRow                          ;+;+;+;; ; 
+
+
+#WCMS
+                        ;                    ;                          ;                              ; WCMS                          ; + ;+;+;  ; ; 
+                        ;                    ;                          ;                              ; CMSSite                         ;+;+; + ;  ; ; 
+                        ;                    ;                          ;                              ; AbstractPage                          ;+;+;+;  ; ; 
+                        ;                    ;                          ;                              ;PageTemplate                 ;+;+;+;;; 
+                        ;                    ;                          ;                              ;ContentPage                 ;+;+;+;;; 
+
+ 
+#REPORT
+                        ;                    ;                          ;                              ; System                         ;+;+; + ;  ; ; 
+                        ;                    ;                          ;                              ; AuditReportConfig                          ;+;+;+;  ; ; 
+                        ;                    ;                          ;                              ; ReportDefinitions                         ;+;+;+;  ; ; 
+                        ;                    ;                          ;                              ; FraudReport                          ;+;+;+;  ; ; 
+                        ;                    ;                          ;                              ; ViewType                         ;+;+;+;  ; ; 
+
+
+  
+   
+ $END_USERRIGHTS;;;;;  
+
+ 
+ 
+ 
+
+ # this below all impexes are useful for user groups and privileges(access,search restrictions)
+#1st group impex:localAdminGroup
+#step 1:creating backofficeRole
+INSERT_UPDATE BackofficeRole ; UID[unique = true] ; locName          ; name             ; backOfficeLoginDisabled
+                             ; localAdminRole     ; Local Admin Role ; Local Admin Role ; FALSE                  
+                             	                            
+#step2:creating userGroup and assigning backofficeRole to this group	                            
+INSERT_UPDATE UserGroup ; UID[unique = true] ; locname[lang = en] ; groups(uid)[mode = append] ; backOfficeLoginDisabled ;  
+                        ; localAdminGroup    ; Local Admin Group  ; localAdminRole             ; false                   
+                                              
+#step3:creating employee and assigning group to this employee
+$defaultPassword=123456 
+INSERT_UPDATE Employee ; uid[unique = true] ; password[default=$defaultPassword] ; description          ; name                             ; groups(uid)[mode = append] ;   
+                       ; localAdminEmp      ;                                    ; Local Admin Employee ; Local Admin Employee             ; localAdminGroup            
+					                  
+$START_USERRIGHTS      ;                    ;                                    ;                      ;                                  ;                            ;   ;   ;   ;   
+Type                   ; UID                ; MemberOfGroups                     ; Password             ; Target                           ; read                       ; change; create; remove; change_perm
+UserGroup              ; localAdminRole     ;                                    ;                      ;                                  ;                            ;   ;   ;   ;   
+#catalog               
+                       ;                    ;                                    ;                      ; Catalog                          ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; CatalogVersion                   ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Category                         ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Product                          ; +                          ; + ; + ; - ; + ;  
+                       ;                    ;                                    ;                      ; ArticleApprovalStatus            ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; Unit                             ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ComposedType                     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationClass              ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Feature List                     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationSystem             ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationSystemVersion      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationAttribute          ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationAttributeValue     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationAttributeList      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationAttributeValueList ; +                          ; - ; - ; - ; - ;  
+
+
+
+#Media                 
+                       ;                    ;                                    ;                      ; MediaContainer                   ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Media                            ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; MediaFolder                      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; MediaFormat                      ; +                          ; - ; - ; - ; - ;  
+#User                  
+                       ;                    ;                                    ;                      ; Employee                         ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Customer                         ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; CustomerType                     ; +                          ; + ; + ; - ; - ;  
+
+#Order                 
+                       ;                    ;                                    ;                      ; Order                            ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; Quote                            ; +                          ; + ; + ; - ; - ;  
+#Prices                
+                       ;                    ;                                    ;                      ; Prices                           ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; PriceRow                         ; +                          ; + ; + ; + ; + ;  
+                       ;                    ;                                    ;                      ; Taxes                            ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; Tax                              ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; TaxRow                           ; +                          ; + ; + ; + ; + ;  
+                       ;                    ;                                    ;                      ; UserPriceGroup                   ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Currency                         ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; ProductPriceGroup                ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; EnumerationMetaType              ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; UserTaxGroup                     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ProductTaxGroup                  ; +                          ; - ; - ; - ; - ;  
+
+
+                       
+#Marketing             
+                       ;                    ;                                    ;                      ; Marketing                        ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; PromotionSourceRule              ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; PromotionGroup                   ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; Coupon Management                ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; CodeGenerationConfiguration      ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; AbstractCoupon                   ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; RuleGroup                        ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; RuleStatus                       ; +                          ; + ; + ; - ; - ;  
+                       
+#WCMS                  
+                       ;                    ;                                    ;                      ; WCMS                             ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; CMSSite                          ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; AbstractPage                     ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; PageTemplate                     ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; CmsPageStatus                    ; +                          ; + ; + ; - ; - ;  
+
+
+#REPORT                
+                       ;                    ;                                    ;                      ; System                           ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; AuditReportConfig                ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; ReportDefinitions                ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; FraudReport                      ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; ViewType                         ; +                          ; + ; + ; - ; - ;  
+
+
+$END_USERRIGHTS        ;                    ;                                    ;                      ;                                  ;                            
+
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true]  ; version[unique=true] ; writePrincipals(uid)[mode=append] ; readPrincipals(uid)[mode=append] ;  
+                             ; apparelProductCatalog     ; Staged               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; apparelProductCatalog     ; Online               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; apparel-deContentCatalog  ; Staged               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; apparel-deContentCatalog  ; Online               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; apparel-ukContentCatalog  ; Staged               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; apparel-ukContentCatalog  ; Online               ; localAdminRole                    ; localAdminRole                   ;  
+					                        
+                             ; electronicsProductCatalog ; Staged               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; electronicsProductCatalog ; Online               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; electronicsContentCatalog ; Staged               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; electronicsContentCatalog ; Online               ; localAdminRole                    ; localAdminRole                   ;  
+
+                             ; powertoolsProductCatalog  ; Staged               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; powertoolsProductCatalog  ; Online               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; powertoolsContentCatalog  ; Staged               ; localAdminRole                    ; localAdminRole                   ;  
+                             ; powertoolsContentCatalog  ; Online               ; localAdminRole                    ; localAdminRole                   ;  
+
+                             ; PowertoolsClassification  ; 1.0                  ; localAdminRole                    ; localAdminRole                   ;  
+                             ; ElectronicsClassification ; 1.0                  ; localAdminRole                    ; localAdminRole                   ;  
+
+#These below ClassificationSystemVersion,ClassificationSystem are just for reference only to run catalog version of classification system
+$classificationCatalog=ElectronicsClassification
+# Electronics Classification catalog
+INSERT_UPDATE ClassificationSystem ; id[unique=true]       
+                                   ; $classificationCatalog
+# Insert Classifications System Version
+INSERT_UPDATE ClassificationSystemVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; inclPacking[virtual=true,default=true] ; inclDuty[virtual=true,default=true] ; inclFreight[virtual=true,default=true] ; inclAssurance[virtual=true,default=true]
+                                          ; $classificationCatalog   ; 1.0                  ; true   
+
+#****************************************************************************************************************************
+#2nd group imex :                         
+#step 1:creating backofficeRole      
+INSERT_UPDATE BackofficeRole ; UID[unique = true] ; locName              ; name                 ; backOfficeLoginDisabled
+                             ; localMarketingRole ; Local Marketing Role ; Local Marketing Role ; FALSE                  
+                             	                            
+#step2:creating userGroup and assigning backofficeRole to this group                            
+INSERT_UPDATE UserGroup ; UID[unique = true]  ; locname[lang = en]    ; groups(uid)[mode = append] ; backOfficeLoginDisabled ;  
+                        ; localMarketingGroup ; Local Marketing Group ; localMarketingRole         ; false                   
+                                               
+#step3:creating employee and assigning group to this employee
+$defaultPassword=123456 
+INSERT_UPDATE Employee ; uid[unique = true] ; password[default=$defaultPassword] ; description              ; name                             ; groups(uid)[mode = append] ;   
+                       ; localMarketingEmp  ;                                    ; Local Marketing Employee ; Local Marketing Employee         ; localMarketingGroup        
+					                               
+					                  
+$START_USERRIGHTS      ;                    ;                                    ;                          ;                                  ;                            ;   ;   ;   ;   
+Type                   ; UID                ; MemberOfGroups                     ; Password                 ; Target                           ; read                       ; change; create; remove; change_perm
+UserGroup              ; localMarketingRole ;                                    ;                          ;                                  ;                            ;   ;   ;   ;   
+#catalog               
+                       ;                    ;                                    ;                          ; Catalog                          ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; CatalogVersion                   ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Category                         ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Product                          ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; ArticleApprovalStatus            ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; Unit                             ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ComposedType                     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ClassificationClass              ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Feature List                     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ClassificationSystem             ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ClassificationSystemVersion      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ClassificationAttribute          ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ClassificationAttributeValue     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ClassificationAttributeList      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ClassificationAttributeValueList ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Feature List                     ; +                          ; - ; - ; - ; - ;  
+#Media                 
+                       ;                    ;                                    ;                          ; MediaContainer                   ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Media                            ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; MediaFolder                      ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; MediaFormat                      ; +                          ; + ; + ; - ; - ;  
+#User                  
+                       ;                    ;                                    ;                          ; Employee                         ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Customer                         ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; CustomerType                     ; +                          ; + ; + ; - ; - ;  
+
+
+#order                 
+                       ;                    ;                                    ;                          ; Order                            ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Quote                            ; +                          ; - ; - ; - ; - ;  
+#Prices                
+                       ;                    ;                                    ;                          ; Prices                           ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; PriceRow                         ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Taxes                            ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Tax                              ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; TaxRow                           ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; UserPriceGroup                   ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Currency                         ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ProductPriceGroup                ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; EnumerationMetaType              ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; UserTaxGroup                     ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ProductTaxGroup                  ; -                          ; - ; - ; - ; - ;  
+
+                       
+#Marketing             
+                       ;                    ;                                    ;                          ; Marketing                        ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; PromotionSourceRule              ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; PromotionGroup                   ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; Coupon Management                ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; CodeGenerationConfiguration      ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; AbstractCoupon                   ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; RuleGroup                        ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                          ; RuleStatus                       ; +                          ; + ; + ; - ; - ;  
+
+
+#WCMS                  
+                       ;                    ;                                    ;                          ; WCMS                             ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; CMSSite                          ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; AbstractPage                     ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; PageTemplate                     ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ContentPage                      ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Theme                            ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; sitechannel                      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; Language                         ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; SolrSearchConfig                 ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; CartRemovalCronJob               ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; SiteMapConfig                    ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ComposedType                     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ContentPage                      ; +                          ; - ; - ; - ; - ;  
+
+
+
+
+
+#REPORT                
+                       ;                    ;                                    ;                          ; System                           ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; AuditReportConfig                ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ReportDefinitions                ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; FraudReport                      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                          ; ViewType                         ; +                          ; - ; - ; - ; - ;  
+
+
+
+$END_USERRIGHTS        ;                    ;                                    ;                          ;                                  ;                            
+
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true]  ; version[unique=true] ; writePrincipals(uid)[mode=append] ; readPrincipals(uid)[mode=append] ;  
+                             ; apparelProductCatalog     ; Staged               ; localMarketingRole                ; localMarketingRole               ;  
+                             ; apparelProductCatalog     ; Online               ; localMarketingRole                ; localMarketingRole               ;  
+                             ; apparel-deContentCatalog  ; Staged               ; localMarketingRole                ; localMarketingRole               ;  
+                             ; apparel-deContentCatalog  ; Online               ; localMarketingRole                ; localMarketingRole               ;  
+                             ; apparel-ukContentCatalog  ; Staged               ; localMarketingRole                ; localMarketingRole               ;  
+                             ; apparel-ukContentCatalog  ; Online               ; localMarketingRole                ; localMarketingRole               ;  
+					                        
+                             ; PowertoolsClassification  ; 1.0                  ; localMarketingRole                ; localMarketingRole               ;  
+                             ; PowertoolsClassification  ; 1.0                  ; localMarketingRole                ; localMarketingRole               ;  
+                             ; ElectronicsClassification ; 1.0                  ; localMarketingRole                ; localMarketingRole               ;  
+                             ; ElectronicsClassification ; 1.0                  ; localMarketingRole                ; localMarketingRole               ;  
+						                        
+#************************************************************************************************************************************
+
+#3rd group imex :             
+ #####step 1:creating backofficeRole
+INSERT_UPDATE BackofficeRole ; UID[unique = true] ; locName          ; name             ; backOfficeLoginDisabled
+                             ; localSalesRole     ; Local Sales Role ; Local Sales Role ; FALSE                  
+                             
+	                            
+#######step2:creating userGroup and assigning backofficeRole to this group
+	                            
+INSERT_UPDATE UserGroup ; UID[unique = true] ; locname[lang = en] ; groups(uid)[mode = append] ; backOfficeLoginDisabled ;  
+                        ; localSalesGroup    ; Local Sales Group  ; localSalesRole             ; false                   
+                        
+                        
+ #######step3:creating employee and assigning group to this employee
+
+$defaultPassword=123456 
+
+INSERT_UPDATE Employee ; uid[unique = true] ; password[default=$defaultPassword] ; description          ; name                             ; groups(uid)[mode = append] ;   
+                       ; localSalesEmp      ;                                    ; Local Sales Employee ; Local Sales Employee             ; localSalesGroup            
+					                  
+					                  
+$START_USERRIGHTS      ;                    ;                                    ;                      ;                                  ;                            ;   ;   ;   ;   
+Type                   ; UID                ; MemberOfGroups                     ; Password             ; Target                           ; read                       ; change; create; remove; change_perm
+UserGroup              ; localSalesRole     ;                                    ;                      ;                                  ;                            ;   ;   ;   ;   
+#catalog               
+                       ;                    ;                                    ;                      ; Catalog                          ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; CatalogVersion                   ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Category                         ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Product                          ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; ArticleApprovalStatus            ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; Unit                             ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ComposedType                     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationClass              ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Feature List                     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationSystem             ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationSystemVersion      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationAttribute          ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationAttributeValue     ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationAttributeList      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ClassificationAttributeValueList ; +                          ; - ; - ; - ; - ;  
+
+#Media                 
+                       ;                    ;                                    ;                      ; MediaContainer                   ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Media                            ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; MediaFolder                      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; MediaFormat                      ; +                          ; - ; - ; - ; - ;  
+#User                  
+                       ;                    ;                                    ;                      ; Employee                         ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Customer                         ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; CustomerType                     ; -                          ; - ; - ; - ; - ;  
+
+#Order                 
+                       ;                    ;                                    ;                      ; Order                            ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; Quote                            ; +                          ; + ; + ; - ; - ;  
+#Prices                
+                       ;                    ;                                    ;                      ; Prices                           ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; PriceRow                         ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Taxes                            ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Tax                              ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; TaxRow                           ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; UserPriceGroup                   ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; Currency                         ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ProductPriceGroup                ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; EnumerationMetaType              ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; UserTaxGroup                     ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ProductTaxGroup                  ; -                          ; - ; - ; - ; - ;  
+
+#Marketing             
+                       ;                    ;                                    ;                      ; Marketing                        ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; PromotionSourceRule              ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; Coupon Management                ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; AbstractCoupon                   ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; PromotionGroup                   ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; RuleGroup                        ; +                          ; + ; + ; - ; - ;  
+                       ;                    ;                                    ;                      ; RuleStatus                       ; +                          ; + ; + ; - ; - ;  
+
+
+#WCMS                  
+                       ;                    ;                                    ;                      ; WCMS                             ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; CMSSite                          ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; AbstractPage                     ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; PageTemplate                     ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ContentPage                      ; -                          ; - ; - ; - ; - ;  
+#REPORT                
+                       ;                    ;                                    ;                      ; System                           ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; AuditReportConfig                ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ReportDefinitions                ; -                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; FraudReport                      ; +                          ; - ; - ; - ; - ;  
+                       ;                    ;                                    ;                      ; ViewType                         ; -                          ; - ; - ; - ; - ;  
+
+
+$END_USERRIGHTS        ;                    ;                                    ;                      ;                                  ;                            
+					                        
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true]  ; version[unique=true] ; writePrincipals(uid)[mode=append] ; readPrincipals(uid)[mode=append] ;  
+                             ; apparelProductCatalog     ; Staged               ; localSalesRole                    ; localSalesRole                   ;  
+                             ; apparelProductCatalog     ; Online               ; localSalesRole                    ; localSalesRole                   ;  
+                             ; apparel-deContentCatalog  ; Staged               ; localSalesRole                    ; localSalesRole                   ;  
+                             ; apparel-deContentCatalog  ; Online               ; localSalesRole                    ; localSalesRole                   ;  
+                             ; apparel-ukContentCatalog  ; Staged               ; localSalesRole                    ; localSalesRole                   ;  
+                             ; apparel-ukContentCatalog  ; Online               ; localSalesRole                    ; localSalesRole                   ;  
+
+                             ; PowertoolsClassification  ; 1.0                  ; localSalesRole                    ; localSalesRole                   ;  
+                             ; PowertoolsClassification  ; 1.0                  ; localSalesRole                    ; localSalesRole                   ;  
+                             ; ElectronicsClassification ; 1.0                  ; localSalesRole                    ; localSalesRole                   ;  
+                             ; ElectronicsClassification ; 1.0                  ; localSalesRole                    ; localSalesRole                   ;  
+					                        
+				                         
+#search restriction          
+
+INSERT_UPDATE SearchRestriction ; code[unique=true]      ; active ; generate ; restrictedType(code) ; principal(uid)      ; query                                                                                                                                                                                                                      
+                                ; fraudReportRestriction ; true   ; true     ; FraudReport          ; localMarketingGroup ; "{pk} in ({{select {f.pk} from {FraudReport as f join Catalog as c on {c.pk}={f.catalog} join CatalogVersion as cv on {cv.pk}={f.catalogversion} and {cv.version}='Staged' and {c.id}='apparelProductCatalog'}}})"         
+                                ; unitRestriction        ; true   ; true     ; Unit                 ; localMarketingGroup ; "{pk} in ({{select {u.pk} from {Unit as u join Catalog as c on {c.pk}={u.catalog} join CatalogVersion as cv on {cv.pk}={u.catalogversion} and {cv.version}='Staged' and {c.id}='apparelProductCatalog'}}})"                
+                                ; productRestriction     ; true   ; true     ; Product              ; localMarketingGroup ; "{pk} in ({{select {p.pk} from {Product as p join Catalog as c on {c.pk}={p.catalog} join CatalogVersion as cv on {cv.pk}={p.catalogversion} and {cv.version}='Staged' and {c.id}='apparelProductCatalog'}}})"             
+                                ; categoryRestriction    ; true   ; true     ; Category             ; localMarketingGroup ; "{pk} in ({{select {c.pk} from {Category as c join Catalog as cat on {cat.pk}={c.catalog} join CatalogVersion as cv on {cv.pk}={c.catalogversion} and {cv.version}='Staged' and {cat.id}='apparelProductCatalog'}}})"      
+                                ; mediaRestriction       ; true   ; true     ; MediaFolder          ; localMarketingGroup ; "{pk} in ({{select {mf.pk} from {MediaFolder as mf join Catalog as c on {c.pk}={mf.catalog} join CatalogVersion as cv on {cv.pk}={mf.catalogversion} and {cv.version}='Staged' and {c.id}='apparel-ukContentCatalog'}}})"  
+                                ; orderRestriction       ; true   ; true     ; Order                ; localMarketingGroup ; "{pk} in ({{select {o.pk} from {Order as o join Catalog as c on {c.pk}={o.catalog} join CatalogVersion as cv on {cv.pk}={o.catalogversion} and {cv.version}='Staged' and {c.id}='apparelProductCatalog'}}})"               
+                                ; mediaRestriction       ; true   ; true     ; Media                ; localMarketingGroup ; "{pk} in ({{select {m.pk} from {Media as m join Catalog as c on {c.pk}={m.catalog} join CatalogVersion as cv on {cv.pk}={m.catalogversion} and {cv.version}='Staged' and {c.id}='apparel-ukContentCatalog'}}})"            
+                                ; quoteRestriction       ; true   ; true     ; Quote                ; localMarketingGroup ; "{pk} in ({{select {q.pk} from {Quote as q join Catalog as c on {c.pk}={q.catalog} join CatalogVersion as cv on {cv.pk}={q.catalogversion} and {cv.version}='Staged' and {c.id}='apparelProductCatalog'}}})"               
+
+                                ; customcatalog          ; true   ; true     ; Catalog              ; localSalesGroup     ; "{pk} in ({{select {PK} from {Catalog as c} where {c.id}='apparelProductCatalog'}})"                                                                                                                                       
+                                ; customcatalogversion   ; true   ; true     ; CatalogVersion       ; localSalesGroup     ; "{pk} in ({{select {PK} from {CatalogVersion as cv JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='apparelProductCatalog ' and {cv.version}='Staged'}})"                                                           
+                                ; custommediacontainer   ; true   ; true     ; MediaContainer       ; localSalesGroup     ; "{pk} in ({{select {mc.PK} from {MediaContainer as mc JOIN CatalogVersion as cv ON {mc.catalogVersion}={cv.PK}JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='apparelProductCatalog ' and {cv.version}='Staged'}})"
+                                ; mediaRestriction       ; true   ; true     ; Media                ; localSalesGroup     ; "{pk} in ({{select {media.PK} from {Media as media JOIN CatalogVersion as cv ON {media.catalogVersion}={cv.PK}JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='apparelProductCatalog ' and {cv.version}='Staged'}})"
+					                           
+ #working                       
+INSERT_UPDATE SearchRestriction ; code[unique=true]        ; active ; generate ; restrictedType(code) ; principal(uid)      ; query                                                                                                                                                                                                                      
+                                ; customcatalog            ; true   ; true     ; Catalog              ; localSalesGroup     ; "{pk} in ({{select {PK} from {Catalog as c} where {c.id}='apparelProductCatalog'}})"                                                                                                                                       
+                                ; customcatalogversion     ; true   ; true     ; CatalogVersion       ; localSalesGroup     ; "{pk} in ({{select {PK} from {CatalogVersion as cv JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='apparelProductCatalog ' and {cv.version}='Staged'}})"                                                           
+                                ; custommediacontainer     ; true   ; true     ; MediaContainer       ; localSalesGroup     ; "{pk} in ({{select {mc.PK} from {MediaContainer as mc JOIN CatalogVersion as cv ON {mc.catalogVersion}={cv.PK}JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='apparelProductCatalog ' and {cv.version}='Staged'}})"
+                                ; mediaRestriction         ; true   ; true     ; Media                ; localSalesGroup     ; "{pk} in ({{select {media.PK} from {Media as media JOIN CatalogVersion as cv ON {media.catalogVersion}={cv.PK}JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='apparelProductCatalog ' and {cv.version}='Staged'}})"
+                                ; customerWithoutAnonymous ; true   ; true     ; Customer             ; localSalesGroup     ; {uid} NOT LIKE 'anonymous'                                                                                                                                                                                                 
+                                ; productRestriction       ; true   ; true     ; Product              ; localMarketingGroup ; "{pk} in ({{select {p.pk} from {Product as p join Catalog as c on {c.pk}={p.catalog} join CatalogVersion as cv on {cv.pk}={p.catalogversion} and {cv.version}='Staged' and {c.id}='apparelProductCatalog'}}})"             
+
+					                           
+INSERT_UPDATE SearchRestriction ; code[unique=true]      ; principal(uid)[unique=true] ; query               ; restrictedType(code)[unique=true] ; active ; generate
+                                ; backendOrderVisibility ; localSalesGroup             ; {versionID} IS NULL ; Order                             ; true   ; true    
+	                               
+
+					                           
+select * from {MediaFolder as mf join Catalog as c on {c.pk}={mf.catalog} join CatalogVersion as cv on {cv.pk}={mf.catalogversion} and {cv.version}='Staged' and {c.id}='apparel-ukContentCatalog'}}"
+
+
+INSERT_UPDATE BackofficeRole ; UID[unique = true] ; locName            ; name               ; backOfficeLoginDisabled
+                             ; testEmployeeRole   ; Test Employee Role ; Test Employee Role ; FALSE                  
+
+                             
+INSERT_UPDATE UserGroup ; UID[unique = true] ; locname[lang = en]  ; groups(uid)[mode = append] ; backOfficeLoginDisabled ;  
+                        ; testEmployee       ; Test Employee group ; testEmployeeRole           ; false                   
+                             
+
+INSERT_UPDATE Employee ; UID[unique = true] ; groups(uid)[mode = append]
+                       ; test_employee      ; testEmployee              
+                       
+
+                       
+#type=MediaContainer    
+
+select * from {MediaContainer as mc JOIN CatalogVersion as cv ON {mc.catalogVersion}={cv.PK}JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='electronicsProductCatalog ' and {cv.version}='Staged'
+
+
+INSERT_UPDATE SearchRestriction ; code[unique=true]    ; active ; generate ; restrictedType(code) ; principal(uid)      ; query                                                                                                                                                                                                                          
+                                ; custommediacontainer ; true   ; true     ; MediaContainer       ; localMarketingGroup ; "{pk} in ({{select {mc.PK} from {MediaContainer as mc JOIN CatalogVersion as cv ON {mc.catalogVersion}={cv.PK}JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='electronicsProductCatalog ' and {cv.version}='Staged'}})"
+
+#working                        
+SELECT *                        
+FROM {MediaContainer AS mc      
+      JOIN CatalogVersion AS cv ON {mc.catalogVersion} = {cv.PK} 
+      JOIN Catalog AS c ON {cv.catalog} = {c.PK}} 
+WHERE {c.id} = 'electronicsProductCatalog' 
+AND {cv.version} = 'Staged'     
+
+#working 2                      
+select * from {Media as media   
+JOIN CatalogVersion as cv ON {media.catalogVersion}={cv.PK}
+JOIN catalog as c ON {cv.catalog}={c.PK}}
+where {c.id}='apparelProductCatalog '
+AND {cv.version}='Staged'       
+
+#working 3                      
+select * from {CatalogVersion as cv
+JOIN catalog as c ON {cv.catalog}={c.PK}} 
+where {c.id}='apparelProductCatalog ' 
+and {cv.version}='Staged'                                                           
+
+#working 4                      
+
+#select * from {Catalog as c} where {c.id}='apparelProductCatalog'                                                                                                                                      
+
+#working 5                      
+
+#select * from {Catalog as c} where {c.id}='apparelProductCatalog' and {c.id}='apparelukcontentCatalog'
+
+                                                                                                                                  
+#type=media                      
+#select * from {Media as media JOIN CatalogVersion as cv ON {media.catalogVersion}={cv.PK}JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='electronicsProductCatalog ' and {cv.version}='Staged'
+
+
+INSERT_UPDATE SearchRestriction ; code[unique=true] ; active ; generate ; restrictedType(code) ; principal(uid)      ; query                                                                                                                                                                                                                          
+                                ; testmedia         ; true   ; true     ; Media                ; localMarketingGroup ; "{pk} in ({{select {media.PK} from {Media as media JOIN CatalogVersion as cv ON {media.catalogVersion}={cv.PK}JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='electronicsProductCatalog ' and {cv.version}='Staged'}})"
+
+
+#type=CatalogVersion             
+#select * from {CatalogVersion as cv JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='electronicsProductCatalog ' and {cv.version}='Staged'
+
+INSERT_UPDATE SearchRestriction ; code[unique=true]    ; active ; generate ; restrictedType(code) ; principal(uid)      ; query                                                                                                                                                               
+                                ; customcatalogversion ; true   ; true     ; CatalogVersion       ; localMarketingGroup ; "{pk} in ({{select {PK} from {CatalogVersion as cv JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='electronicsProductCatalog ' and {cv.version}='Staged'}})"
+								                        
+							                        
+	#type=catalog		                 
+					                           
+INSERT_UPDATE SearchRestriction ; code[unique=true] ; active ; generate ; restrictedType(code) ; principal(uid)      ; query                                                                                   
+                                ; customcatalog     ; true   ; true     ; Catalog              ; localMarketingGroup ; "{pk} in ({{select {PK} from {Catalog as c} where {c.id}='electronicsProductCatalog'}})"
+
+
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; writePrincipals(uid)[mode=append]                             ; readPrincipals(uid)[mode=append] ;  
+                             ; ProductCatalog           ; Staged               ; tecpimEmployeeGlobalUserGroup,tecpimEmployeeCBLAdminUserGroup ; tecpimEmployeeBasicUserGroup     ;  
+                             ; ProductCatalog           ; Online               ; tecpimEmployeeGlobalUserGroup,tecpimEmployeeCBLAdminUserGroup ; tecpimEmployeeBasicUserGroup     ;  
+                                                          
+INSERT_UPDATE SearchRestriction ; code[unique=true]    ; active ; generate ; restrictedType(code) ; principal(uid)  ; query                                                                                                                                                                                                                      
+                                ; customcatalog        ; true   ; true     ; Catalog              ; localSalesGroup ; "{pk} in ({{select {PK} from {Catalog as c} where {c.id}='apparelProductCatalog'}})"                                                                                                                                       
+                                ; customcatalogversion ; true   ; true     ; CatalogVersion       ; localSalesGroup ; "{pk} in ({{select {PK} from {CatalogVersion as cv JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='apparelProductCatalog ' and {cv.version}='Staged'}})"                                                           
+                                ; custommediacontainer ; true   ; true     ; MediaContainer       ; localSalesGroup ; "{pk} in ({{select {mc.PK} from {MediaContainer as mc JOIN CatalogVersion as cv ON {mc.catalogVersion}={cv.PK}JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='apparelProductCatalog ' and {cv.version}='Staged'}})"
+                                ; mediaRestriction     ; true   ; true     ; Media                ; localSalesGroup ; "{pk} in ({{select {media.PK} from {Media as media JOIN CatalogVersion as cv ON {media.catalogVersion}={cv.PK}JOIN catalog as c ON {cv.catalog}={c.PK}} where {c.id}='apparelProductCatalog ' and {cv.version}='Staged'}})"
+					                           
+INSERT_UPDATE SearchRestriction ; code[unique=true]      ; principal(uid)[unique=true] ; query               ; restrictedType(code)[unique=true] ; active ; generate
+                                ; backendOrderVisibility ; customersupportagentgroup   ; {versionID} IS NULL ; Order                             ; true   ; true    
+
+
+                                
+
+    
+                     
+    #     ======================solr.impex=============================
+            
+    # Import the Solr configuration for the Apparel UK store
+#
+$productCatalog=apparelProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$facetSearchConfigName=apparel-ukIndex
+$facetSearchConfigDescription=Apparel UK Solr Index
+$searchIndexNamePrefix=apparel-uk
+$solrIndexedType=apparel-ukProductType
+$indexBaseSite=apparel-uk
+$indexLanguages=en
+$indexCurrencies=GBP
+
+#below 2 macros is req
+            $solrIndexedType=apparel-ukProductType
+            $lang=en
+            
+            
+            # Facets
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code)   ;sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];facet[default=true];facetType(code);facetSort(code);priority;visible;useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider            ;facetDisplayNameProvider;customFacetSortProvider;topValuesProvider;rangeSets(name)
+                                 ;$solrIndexedType                        ; sellingRank      ;int ;              ;               ;                ;true             ;           ;Refine     ;Alpha      ; 3000   ;true   ;                          ;                         ;springELValueProvider         ;                        ;                       ;                 ;
+                                 ;$solrIndexedType                        ; productZone      ;string ;              ;               ;                ;true             ;           ;MultiSelectAnd     ;Alpha      ; 4000   ;true   ;                          ;                         ;springELValueProvider         ;                        ;                       ;                 ;
+                                 ;$solrIndexedType                        ; manufactureZones ;string ;              ;               ;                ;true             ;           ;MultiSelectOr     ;Alpha      ; 5000   ;true   ;                          ;                         ;manufactureZoneValueProvider         ;                        ;                       ;                 ;
+            
+  
+  
+          # Facet search query properties
+INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true]         ;facet[default=true]   ;facetType(code);priority   ;facetDisplayNameProvider;facetSortProvider;facetTopValuesProvider;includeInResponse[default=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
+                                     ;sellingRank:$solrIndexedType                                            ;	                     ;Refine	   ;3000	   ;			            ;				  ;						 ;                       ;
+                                     ;productZone:$solrIndexedType                                            ;	                     ;MultiSelectAnd	   ;4000	   ;			            ;				  ;						 ;                       ;
+                                     ;manufactureZones:$solrIndexedType                                       ;	                     ;MultiSelectOr	   ;5000	   ;manufactureZoneFacetDisplayNameProvider			            ;				  ;						 ;                       ;
+            
+            
+            # Update Solr Indexed Property Name for facet
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true]    ;displayName[lang=$lang]
+                          ;$solrIndexedType           			   ;sellingRank			 ;"Selling Rank"
+                          ;$solrIndexedType            			   ;productZone          ;"Product Zone"
+                          ;$solrIndexedType            			   ;manufactureZones     ;"Manufacture Zones"
+
+ #           ========================ManufactureZone.impex==============================
+
+INSERT_UPDATE ManufactureZone;zoneID[Unique=true] ;zoneName  ;postalCode
+                             ;HYDERABAD           ;HYDERABAD ;500072
+                             ;DELHI               ;DELHI     ;4258555
+                             ;BENGALORE           ;BANGALORE ;484444
+            
+ #           =======================Product Update.impex============================
+            
+            # Macros / Replacement Parameter definitions
+            $productCatalog=apparelProductCatalog
+            $productCatalogName=Apparel Product Catalog
+            $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+            $lang=en
+            
+INSERT_UPDATE PRODUCT;CODE[unique=true];sellingRank[default='100'];productZone[default='PZ10'];manufactureZones(zoneName[lang=$lang])[default='HYDERABAD'];$catalogVersion
+                     ;300427202        ;                          ;                           ;                                                           ;
+                     ;300460184        ;200                       ;PZ5                        ;BANGALORE                                                  ;
+                     ;300399420        ;200                       ;                           ;BANGALORE                                                  ;
+                     ;300399588        ;200                       ;                           ;                                                           ;
+                     ;300441355        ;                          ;PZ5                        ;DELHI                                                      ;					
+                     ;300678847        ;200                       ;PZ5 	        			  ;															  ;
+                     ;300410966        ;                          ;PZ5						  ;												   			  ;
+ 
+ 
+ 300412378
+ 95437_rum_raisin
+ 95437_fox_hunt
+ 95437_bright_white_prince_of_wa
+ 95437_bright_white
+ 95437_academy_royal_flush
+ 300412425
+ 300412017
+ 300412202
+ 300459760           
+  #impex 2
+  
+  INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);facet[default=true];facetType(code);facetSort(code);priority;visible;fieldValueProvider;
+                                 ;$solrIndexedType                        ;manufactureZones ;string    ;true               ;MultiSelectOr  ;Alpha       ;5000   ;true   ;manufactureZoneValueProvider;
+            
+INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true];facet[default=true];facetType(code);priority;
+                                     ;manufactureZones:$solrIndexedType                             ;true               ;MultiSelectOr   ;5000;
+            
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];displayName[lang=$lang];
+                                 ;$solrIndexedType                       ;manufactureZones ;"Manufacture Zones";
+   
+   
+   
+               # Macros / Replacement Parameter definitions
+            $productCatalog=apparelProductCatalog
+            $productCatalogName=Apparel Product Catalog
+            $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+            $lang=en
+            
+INSERT_UPDATE PRODUCT;CODE[unique=true];sellingRank[default='100'];productZone[default='PZ10'];manufactureZones(zoneName[lang=$lang])[default='HYDERABAD'];$catalogVersion
+                     ;300412378        ;                          ;                           ;                                                           ;
+                     ;95437_rum_raisin        ;200                       ;PZ5                        ;BANGALORE                                                  ;
+                     ;95437_fox_hunt        ;200                       ;                           ;BANGALORE                                                  ;
+                     ;95437_bright_white_prince_of_wa        ;200                       ;                           ;                                                           ;
+                     ;95437_bright_white        ;                          ;PZ5                        ;DELHI                                                      ;					
+                     ;95437_academy_royal_flush        ;200                       ;PZ5 	        			  ;															  ;
+                     ;300412425        ;                          ;PZ5						  ;												   			  ;
+                     ;300412017        ;                          ;PZ5                        ;DELHI                                                      ;					
+                     ;300412202        ;200                       ;PZ5 	        			  ;BANGALORE														  ;
+                     ;300459760        ;                          ;PZ5						  ;BANGALORE											   			  ;
+                  

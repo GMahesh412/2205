@@ -1,0 +1,4520 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. -->
+<config xmlns="http://www.hybris.com/cockpit/config"
+		xmlns:yc="http://www.hybris.com/cockpitng/config/common"
+		xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+		xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+		xmlns:cb="http://www.hybris.com/cockpitng/config/collectionbrowser"
+		xmlns:cv="http://www.hybris.com/cockpitng/component/compareview"
+    xmlns:pc="http://www.hybris.com/cockpitng/config/perspectiveChooser"
+	xmlns:na="http://www.hybris.com/cockpitng/config/notifications"
+	xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
+	xmlns:lv="http://www.hybris.com/cockpitng/component/listView"
+	xmlns:ss="http://www.hybris.com/cockpitng/config/simplesearch"
+	xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch"
+    xmlns:et="http://www.hybris.com/cockpitng/config/explorertree"
+    xmlns:vs="http://www.hybris.com/cockpitng/config/viewSwitcher"
+    xmlns:dsb="http://www.hybris.com/cockpitng/config/dashboard"
+    xmlns:gv="http://www.hybris.com/cockpitng/component/gridView">
+    
+	<context merge-by="module" component="custom-editorarea-actions"
+		type="Consignment">
+		<y:actions
+			xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+			<y:group qualifier="common">
+				<y:label>actiongroup.common</y:label>
+				<y:action
+					action-id="com.techdenali.backoffice.actions.confirmpickupaction"
+					property="currentObject" />
+			</y:group>
+		</y:actions>
+	</context>
+	
+	<!-- for user group privileges explorer tree -->
+<!-- localAdminRole -->
+	<context component="explorer-tree" module="trainingbackoffice"
+		merge-mode="none"
+		principal="testEmployeeRole,localAdminRole">
+		<et:explorer-tree>
+		<!-- catalog -->
+	<et:navigation-node id="hmc_treenode_catalog">
+		<et:type-node code="Catalog" id="hmc_typenode_catalog" />
+		<et:type-node code="Category" id="hmc_typenode_category" />
+		<et:type-node code="Product" id="hmc_typenode_product" />
+		<et:type-node code="Unit" id="hmc_typenode_unit" />
+		<et:navigation-node
+			id="hmc_treenode_classificationgroup">
+			<et:type-node code="classificationclass" id="hmc_typenode_classificationclass" />
+			<et:type-node code="classificationattribute" id="hmc_typenode_classificationattribute" />
+		</et:navigation-node>
+	</et:navigation-node>
+	<!-- wcms -->
+	 <et:navigation-node id="hmc.cms2">
+		 	    <et:type-node code="CMSSite" id="CMSSite" />
+				<et:type-node code="PageTemplate" id="PageTemplate" />
+				<et:type-node code="AbstractPage" id="AbstractPage" />
+         </et:navigation-node>
+       
+			<!-- media -->
+			<et:navigation-node id="hmc_treenode_medias">
+				<et:type-node code="Media" id="hmc_typenode_media"/>
+				<et:type-node code="MediaContainer" id="hmc_typenode_mediacontainer"/>
+			</et:navigation-node>
+			<!-- user -->
+			<et:navigation-node id="hmc_treenode_user">
+				<et:type-node code="Employee" id="hmc_typenode_employee"/>
+				<et:type-node code="Customer" id="hmc_typenode_customer"/>
+			</et:navigation-node>
+			<!-- Order -->
+			<et:navigation-node id="hmc_treenode_order">
+				<et:type-node code="Order" id="hmc_typenode_order"/>
+ 				<et:type-node code="Quote" id="hmc_typenode_quote"/>
+ 			</et:navigation-node>
+ 
+   <!-- Promotions & marketing -->
+         <et:navigation-node id="hmc_treenode_marketing">
+         		<et:type-node id="hmc_typenode_promotion_rules" code="PromotionSourceRule"/>
+				<!-- coupon management -->
+				   <et:navigation-node id="hmc_treenode_coupon_management">
+					<et:type-node id="hmc_typenode_coupons" code="AbstractCoupon"/>
+			   </et:navigation-node>
+			</et:navigation-node>
+
+			<!-- Prices & Taxes -->
+			<et:navigation-node id="hmc_treenode_pricesettings">
+				<et:navigation-node id="hmc_treenode_prices">
+					<et:type-node code="PriceRow" id="hmc_typenode_pricerow"/>
+				</et:navigation-node>
+				<et:navigation-node id="hmc_treenode_taxes">
+					<et:type-node code="Tax" id="hmc_typenode_tax"/>
+					<et:type-node code="TaxRow" id="hmc_typenode_taxrow"/>
+				</et:navigation-node>
+
+		</et:navigation-node>
+			<!-- hmc_treenode_system,reports -->
+			<et:navigation-node id="hmc_treenode_system">
+		        <et:type-node code="FraudReport" id="FraudReport"/>			
+				<et:type-node code="AuditReportConfig" id="hmc_typenode_auditreportconfig"/>
+			</et:navigation-node>
+		</et:explorer-tree>
+	</context>
+	
+	<!--localMarketingRole-->
+	<context component="explorer-tree" module="trainingbackoffice" merge-mode="none" principal="localMarketingRole">
+<et:explorer-tree>
+		<!-- catalog -->
+	<et:navigation-node id="hmc_treenode_catalog">
+		<et:type-node code="Catalog" id="hmc_typenode_catalog" />
+		<et:type-node code="Category" id="hmc_typenode_category" />
+		<et:type-node code="Product" id="hmc_typenode_product" />
+		<et:type-node code="Unit" id="hmc_typenode_unit" />
+		<et:navigation-node
+			id="hmc_treenode_classificationgroup">
+			<et:type-node code="classificationclass" id="hmc_typenode_classificationclass" />
+			<et:type-node code="classificationattribute" id="hmc_typenode_classificationattribute" />
+		</et:navigation-node>
+	</et:navigation-node>
+	<!-- wcms -->
+	 <et:navigation-node id="hmc.cms2">
+		 	    <et:type-node code="CMSSite" id="CMSSite" />
+         </et:navigation-node>
+			<!-- media -->
+			<et:navigation-node id="hmc_treenode_medias">
+				<et:type-node code="Media" id="hmc_typenode_media"/>
+			</et:navigation-node>
+			<!-- user -->
+			<et:navigation-node id="hmc_treenode_user">
+				<et:type-node code="Customer" id="hmc_typenode_customer"/>
+			</et:navigation-node>
+			<!-- Order -->
+			<et:navigation-node id="hmc_treenode_order">
+				<et:type-node code="Order" id="hmc_typenode_order"/>
+ 				<et:type-node code="Quote" id="hmc_typenode_quote"/>
+ 			</et:navigation-node>
+   <!-- Promotions & marketing -->
+         <et:navigation-node id="hmc_treenode_marketing">
+         		<et:type-node id="hmc_typenode_promotion_rules" code="PromotionSourceRule"/>
+				<!-- coupon management -->
+				   <et:navigation-node id="hmc_treenode_coupon_management">
+					<et:type-node id="hmc_typenode_coupons" code="AbstractCoupon"/>
+			   </et:navigation-node>
+			</et:navigation-node>
+			<!-- hmc_treenode_system,reports -->
+			<et:navigation-node id="hmc_treenode_system">
+		        <et:type-node code="FraudReport" id="FraudReport"/>			
+			</et:navigation-node>
+		</et:explorer-tree>
+	</context>
+	
+	<!--localSalesRole-->
+	<context component="explorer-tree" module="trainingbackoffice" merge-mode="none" principal="localSalesRole">
+	<et:explorer-tree>
+		<!-- catalog -->
+	<et:navigation-node id="hmc_treenode_catalog">
+		<et:type-node code="Catalog" id="hmc_typenode_catalog" />
+		<et:type-node code="Category" id="hmc_typenode_category" />
+		<et:type-node code="Product" id="hmc_typenode_product" />
+		<et:type-node code="Unit" id="hmc_typenode_unit" />
+		<et:navigation-node id="hmc_treenode_classificationgroup">
+			<et:type-node code="classificationclass" id="hmc_typenode_classificationclass" />
+			<et:type-node code="classificationattribute" id="hmc_typenode_classificationattribute" />
+		</et:navigation-node>
+	</et:navigation-node>
+			<!-- media -->
+			<et:navigation-node id="hmc_treenode_medias">
+				<et:type-node code="Media" id="hmc_typenode_media"/>
+			</et:navigation-node>
+   <!-- Order -->
+			<et:navigation-node id="hmc_treenode_order">
+				<et:type-node code="Order" id="hmc_typenode_order"/>
+ 				<et:type-node code="Quote" id="hmc_typenode_quote"/>
+ 			</et:navigation-node>
+   <!-- Promotions & marketing -->
+         <et:navigation-node id="hmc_treenode_marketing">
+         		<et:type-node id="hmc_typenode_promotion_rules" code="PromotionSourceRule"/>
+	<!-- coupon management -->
+		<et:navigation-node id="hmc_treenode_coupon_management">
+			<et:type-node id="hmc_typenode_coupons" code="AbstractCoupon"/>
+		</et:navigation-node>
+			</et:navigation-node>
+	<!-- hmc_treenode_system,reports -->
+		<et:navigation-node id="hmc_treenode_system">
+		        <et:type-node code="FraudReport" id="FraudReport"/>			
+		</et:navigation-node>
+	</et:explorer-tree>
+	</context>
+	<!-- user privileges ends !!!  -->
+	
+	
+	   <!-- Customers -->
+    <context component="custom-listview" type="User" module="trainingbackoffice">
+        <lv:list-view>
+            <lv:column qualifier="name" label="customersupport_backoffice_customers_customername"/>
+            <lv:column qualifier="uid"/>
+        </lv:list-view>
+    </context>
+
+    <context merge-by="type" parent="User" type="Customer" component="custom-listview" module="trainingbackoffice">
+        <lv:list-view>
+            <lv:column qualifier="creationtime" sortable="true" label="customersupport_backoffice_customers_creationtime"/>
+            <lv:column qualifier="type" sortable="true" label="customersupport_backoffice_customers_type"/>
+        </lv:list-view>
+    </context>
+
+    <context type="Customer" component="custom-simple-search" module="trainingbackoffice">
+        <ss:simple-search>
+            <ss:field name="uid"/>
+            <ss:field name="customerID"/>
+            <ss:field name="name"/>
+            <ss:sort-field name="modifiedtime" asc="false"/>
+        </ss:simple-search>
+    </context>
+
+
+	<!--Explorer Tree -->
+	<context component="custom-explorer-tree"  module="trainingbackoffice" merge-mode="none" access="testEmployeeRole" principal="testEmployeeRole">
+		<et:explorer-tree>
+			<et:navigation-node id="backoffice_dashboard" position="0"/>
+			<et:navigation-node id="hmc_backoffice-workflow-inbox" position="1"/>
+			<et:navigation-node id="hmc_treenode_system">
+				<et:navigation-node id="hmc_type_tree_oauthserver">
+					<et:type-node code="OAuthClientDetails" id="hmc_type_tree_oauthclientdetails"/>
+					<et:type-node code="OAuthAccessToken" id="type_tree_oauthaccesstoken"/>
+				</et:navigation-node>
+				<et:navigation-node id="hmc_type_tree_corsfilter">
+					<et:type-node code="CorsConfigurationProperty" id="hmc_type_tree_corsconfigurationproperties"/>
+				</et:navigation-node>
+				<et:navigation-node id="hmc_treenode_systemconfig">
+					<et:type-node code="JaloTranslatorConfiguration"
+								  id="hmc_typenode_jalotranslatorconfiguration"/>
+				</et:navigation-node>
+				<et:navigation-node id="hmc_treenode_systemtools">
+					<et:type-node code="SavedValues" id="hmc_typenode_savedvalues"/>
+					<et:navigation-node id="hmc_treenode_impex_import_wizard"/>
+					<et:navigation-node id="hmc_treenode_impex_export_wizard"/>
+					<et:navigation-node id="hmc_treenode_script_generator_wizard"/>
+				</et:navigation-node>
+				<et:navigation-node id="hmc_treenode_group.commons">
+					<et:type-node code="Format" id="hmc_typenode_format"/>
+					<et:type-node code="ItemFormatter" id="hmc_typenode_itemformatter"/>
+					<et:type-node code="MediaFormatter" id="hmc_typenode_mediaformatter"/>
+					<et:type-node code="Document" id="hmc_typenode_document"/>
+					<et:type-node code="RendererTemplate" id="hmc_typenode_renderertemplate"/>
+				</et:navigation-node>
+				<et:navigation-node id="hmc_treenode_workflowgroup">
+					<et:type-node code="WorkflowTemplate" id="hmc_typenode_workflowtemplate"/>
+					<et:type-node code="Workflow" id="hmc_typenode_workflow"/>
+					<et:type-node code="WorkflowAction" id="hmc_typenode_workflowaction"/>
+				</et:navigation-node>
+				<et:navigation-node id="hmc_treenode_validationgroup">
+					<et:type-node code="ConstraintGroup" id="hmc_typenode_constraintgroup"/>
+					<et:type-node code="AbstractConstraint" id="hmc_typenode_abstractconstraint">
+						<et:navigation-node id="hmc_backoffice-validationPojoOnly"/>
+					</et:type-node>
+				</et:navigation-node>
+				<et:navigation-node id="hmc_navigationnode_scripting">
+					<et:type-node id="hmc_typenode_scripting" code="Script"/>
+					<et:type-node code="ScriptingJob" id="hmc_typenode_scriptingjob"/>
+					<et:type-node code="ScriptingTask" id="hmc_typenode_scriptingtask"/>
+				</et:navigation-node>
+				<et:navigation-node id="hmc_navigationnode_businessprocess">
+					<et:type-node code="BusinessProcess" id="hmc_typenode_businessprocess"/>
+					<et:type-node id="hmc_typenode_dynamic_process_definition" code="DynamicProcessDefinition"/>
+				</et:navigation-node>
+				<et:navigation-node id="hmc_treenode_background_processes">
+					<et:type-node code="CronJob" id="hmc_typenode_cronjob"/>
+					<et:type-node code="Job" id="hmc_typenode_job"/>
+					<et:type-node code="JobLog" id="hmc_typenode_joblog"/>
+					<et:type-node code="Task" id="hmc_typenode_task"/>
+					<et:type-node code="TaskCondition" id="hmc_typenode_taskcondition"/>
+					<et:type-node code="DistributedProcess" id="hmc_typenode_distributed_process"/>
+				</et:navigation-node>
+				<et:type-node code="Type" id="hmc_typenode_type"/>
+				<et:type-node code="SavedQuery" id="hmc_typenode_savedquery"/>
+				<et:type-node code="BackofficeSavedQuery" id="hmc_typenode_backofficesavedquery"/>
+				<et:type-node code="ViewType" id="hmc_typenode_viewtype"/>
+				<et:type-node code="SearchRestriction" id="hmc_typenode_searchrestriction"/>
+				<et:type-node code="SystemSetupAudit" id="hmc_typenode_systemsetupaudit"/>
+				<et:type-node code="AuditReportConfig" id="hmc_typenode_auditreportconfig"/>
+				<et:type-node code="CatalogVersionSyncJob" id="hmc_typenode_catalogversionsyncjob"/>
+				<et:type-node code="AbstractRetentionRule" id="hmc_typenode_abstractretentionrule"/>
+			</et:navigation-node>
+			<et:navigation-node id="hmc_treenode_catalog">
+				<et:type-node code="Catalog" id="hmc_typenode_catalog"/>
+				<et:type-node code="CatalogVersion" id="hmc_typenode_catalogversion"/>
+				<et:type-node code="Category" id="hmc_typenode_category"/>
+				<et:type-node code="Product" id="hmc_typenode_product"/>
+				<et:type-node code="VariantType" id="hmc_typenode_varianttype"/>
+				<et:type-node code="Unit" id="hmc_typenode_unit"/>
+				<et:type-node code="Keyword" id="hmc_typenode_keyword"/>
+				<et:navigation-node id="hmc_treenode_classificationgroup">
+					<et:type-node code="classificationclass" id="hmc_typenode_classificationclass"/>
+					<et:type-node code="classificationattribute" id="hmc_typenode_classificationattribute"/>
+					<et:type-node code="classificationattributevalue"
+								  id="hmc_typenode_classificationattributevalue"/>
+					<et:type-node code="ClassificationAttributeUnit"
+								  id="hmc_typenode_classificationattributeunit"/>
+				</et:navigation-node>
+			</et:navigation-node>
+			<et:navigation-node id="hmc_treenode_medias">
+				<et:type-node code="Media" id="hmc_typenode_media"/>
+				<et:type-node code="MediaFolder" id="hmc_typenode_mediafolder"/>
+				<et:type-node code="MediaContainer" id="hmc_typenode_mediacontainer"/>
+				<et:type-node code="MediaFormat" id="hmc_typenode_mediaformat"/>
+				<et:type-node code="MediaContext" id="hmc_typenode_mediacontext"/>
+			</et:navigation-node>
+			<et:navigation-node id="hmc_treenode_user">
+				<et:type-node code="company" id="hmc_typenode_company"/>
+				<et:type-node code="UserGroup" id="hmc_typenode_usergroup"/>
+				<et:type-node code="Employee" id="hmc_typenode_employee"/>
+				<et:type-node code="Customer" id="hmc_typenode_customer"/>
+				<et:type-node code="Address" id="hmc_typenode_address"/>
+				<et:type-node code="Title" id="hmc_typenode_title"/>
+				<et:type-node code="agreement" id="hmc_typenode_agreement"/>
+			</et:navigation-node>
+			<et:navigation-node id="hmc_treenode_order">
+				<et:type-node code="Order" id="hmc_typenode_order"/>
+				<et:type-node code="OrderEntry" id="hmc_typenode_orderentry"/>
+				<et:type-node code="Quote" id="hmc_typenode_quote"/>
+				<et:type-node code="QuoteEntry" id="hmc_typenode_quoteentry"/>
+			</et:navigation-node>
+			
+			
+		</et:explorer-tree>
+	</context>
+
+	<context principal="backofficeadministratorrole,testEmployeeRole" component="custom-explorer-tree" merge-by="principal">
+		<et:explorer-tree>
+			<et:navigation-node id="hmc_treenode_system">
+				<et:navigation-node id="hmc_treenode_themes_and_branding" position="0">
+					<et:navigation-node id="theme_setting"/>
+					<et:navigation-node id="custom_themes"/>
+					<et:navigation-node id="logo_setting"/>
+				</et:navigation-node>	
+			</et:navigation-node>
+		</et:explorer-tree>
+	</context>
+
+<!-- Define listViewActions -->
+	<context component="customlistviewactions" type="GenericItem">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:label>actiongroup.common</y:label>
+				<y:action action-id="com.hybris.cockpitng.action.delete"
+					property="selectedObjects" />
+				<y:action action-id="com.hybris.cockpitng.action.create"
+					property="pageable.typeCode" />
+			</y:group>
+		</y:actions>
+	</context>
+		<!-- adding Dashboard -->
+	<context component="dashboard-actions" principal="backofficeadministratorrole" access="testEmployeeRole,backofficeadministratorrole">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:label>actiongroup.common</y:label>
+				<y:action action-id="com.hybris.cockpitng.action.misc.refresh" property="currentObject"/>
+				<y:action action-id="com.hybris.cockpitng.action.run.gc" property="currentObject"/>
+			</y:group>
+		</y:actions>
+	</context>
+	<context component="dashboard" principal="backofficeadministratorrole" access="testEmployeeRole,backofficeadministratorrole">
+		<dsb:dashboard defaultGridId="regular">
+			<dsb:grid minScreenWidth="1" maxScreenWidth="700" id="small"/>
+			<dsb:grid minScreenWidth="701" id="regular">
+				<dsb:placement widgetId="taskQueueSizeChart_master_Chart" width="2"/>
+				<dsb:placement widgetId="taskQueuePoolingSizeChart_master_Chart" y="1"/>
+				<dsb:placement widgetId="dbConnectionsInUseChart_master_Chart" x="1" y="1"/>
+				<dsb:placement widgetId="defaulMemoryChart" width="2" y="2"/>
+				<dsb:placement widgetId="defaulThreadsChart" y="3"/>
+				<dsb:placement widgetId="defaulOsChart" x="1" y="3"/>
+			</dsb:grid>
+		</dsb:dashboard>
+	</context>
+	<context component="dashboard" access="testEmployeeRole,backofficeadministratorrole">
+		<dsb:dashboard defaultGridId="small">
+			<dsb:grid id="small" unassigned="exclude">
+				<dsb:placement widgetId="defaulOsChart" x="1"/>
+				<dsb:placement widgetId="defaulMemoryChart" width="2" y="1"/>
+				<dsb:placement widgetId="defaulThreadsChart"/>
+			</dsb:grid>
+		</dsb:dashboard>
+	</context> 
+
+ <context component="perspective-chooser" principal="testEmployeeRole" merge-by="module" parent="commerceservicesbackoffice" access="testEmployeeRole,backofficeadministratorrole">
+	<pc:perspective-chooser >
+		<pc:defaultPerspective name="custom-perspective"/>
+		<pc:authority name="testEmployeeRole">
+ 			<pc:perspective id="organizationBackofficePerspective"/>
+ 			<pc:perspective id="custom-perspective"/>
+		</pc:authority>
+	</pc:perspective-chooser>
+</context> 
+<!-- Actions for editor area -->
+
+	<context component="custom-editorarea-actions" type="OAuthAccessToken">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:action action-id="DeleteAccessTokenWithRefreshToken" property="currentObject"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context component="custom-editorarea-actions" type="AbstractConstraint">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:action action-id="com.hybris.cockpitng.action.delete" property="currentObject">
+					<y:parameter>
+						<yc:name>notificationSource</yc:name>
+						<yc:value>removedValidations</yc:value>
+					</y:parameter>
+				</y:action>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context component="customlistviewactions" type="OAuthAccessToken">
+		<y:actions>
+			<y:group qualifier="common">
+                <y:action action-id="DeleteAccessTokenWithRefreshToken" property="selectedObjects" triggerOnKeys="#del"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+
+	<!-- List view configuration -->
+	
+
+	<context merge-by="type" parent="GenericItem" component="custom-listview" type="AuditReportData">
+		<lv:list-view>
+			<lv:column qualifier="code" hflex="true"/>
+			<lv:column qualifier="auditRootItem" hflex="true"/>
+		</lv:list-view>
+	</context>
+
+	<!-- Editor area configuration -->
+	<context merge-by="type" parent="GenericItem" type="OAuthClientDetails" component="custom-editor-area">
+		<ea:editorArea xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea">
+			<ea:essentials>
+				<ea:essentialSection name="hmc.essential">
+					<ea:attribute qualifier="clientId" description="field.oauthclient.clientId.description"/>
+				</ea:essentialSection>
+			</ea:essentials>
+			<ea:tab name="hmc.tab.common">
+				<ea:section name="field.oauthclient.clientSecret.description">
+                    <ea:attribute qualifier="clientSecret" description="field.oauthclient.clientSecret.description" editor="com.hybris.cockpitng.editor.defaultpassword"/>
+				</ea:section>
+				<ea:section name="section.oauthclient.basics">
+					<ea:attribute qualifier="authorities" description="field.oauthclient.authorities.description"/>
+                    <ea:attribute qualifier="authorizedGrantTypes" description="field.oauthclient.authorizedGrantTypes.description"/>
+					<ea:attribute qualifier="resourceIds" description="field.oauthclient.resourceIds.description"/>
+                    <ea:attribute qualifier="registeredRedirectUri" description="field.oauthclient.registeredRedirectUri.description"/>
+				</ea:section>
+				<ea:section name="section.oauthclient.scope">
+					<ea:attribute qualifier="scope" description="field.oauthclient.scope.description"/>
+					<ea:attribute qualifier="autoApprove" description="field.oauthclient.autoApprove.description"/>
+				</ea:section>
+				<ea:section name="section.oauthclient.tokenvalidity">
+                    <ea:attribute qualifier="accessTokenValiditySeconds" description="field.oauthclient.accessTokenValiditySeconds.description"/>
+                    <ea:attribute qualifier="refreshTokenValiditySeconds" description="field.oauthclient.refreshTokenValiditySeconds.description"/>
+				</ea:section>
+				<ea:section name="section.oauthclient.disabled">
+					<ea:attribute qualifier="disabled" description="field.oauthclient.disabled.description"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+
+
+	<context merge-by="type" parent="GenericItem" type="OAuthAccessToken" component="custom-editor-area">
+		<ea:editorArea xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea">
+			<ea:tab name="hmc.tab.common">
+				<ea:section name="section.oauthtoken.basics">
+					<ea:attribute qualifier="tokenId" readonly="true"/>
+					<ea:attribute qualifier="user" readonly="true"/>
+					<ea:attribute qualifier="client" readonly="true"/>
+					<ea:attribute qualifier="refreshToken" readonly="true"/>
+					<ea:attribute qualifier="authenticationId" readonly="true"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+
+<!-- List view configuration -->
+	<context merge-by="type" parent="GenericItem" type="OAuthClientDetails" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="clientId"/>
+			<lv:column qualifier="authorities"/>
+			<lv:column qualifier="authorizedGrantTypes"/>
+		</lv:list-view>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="OAuthAccessToken" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="tokenId"/>
+			<lv:column qualifier="user"/>
+			<lv:column qualifier="client"/>
+		</lv:list-view>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="AuditReportConfig" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="active"/>
+			<lv:column qualifier="version"/>
+		</lv:list-view>
+	</context>
+
+	<context parent="GenericItem" type="AbstractRetentionRule" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="actionReference"/>
+			<lv:column qualifier="itemtype"/>
+		</lv:list-view>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" component="custom-listview" type="AuditReportData">
+		<lv:list-view>
+			<lv:column qualifier="code" hflex="true"/>
+			<lv:column qualifier="auditRootItem" hflex="true"/>
+		</lv:list-view>
+	</context>
+
+	<!--   Simple search configuration -->
+	<context merge-by="type" parent="GenericItem" type="OAuthClientDetails" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="clientId"/>
+		</ss:simple-search>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="OAuthAccessToken" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="tokenId"/>
+		</ss:simple-search>
+	</context>
+
+	<!--   Advanced search configuration -->
+	<context merge-by="type" parent="GenericItem" type="OAuthClientDetails" component="custom-advanced-search">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="clientId" selected="true" operator="contains"/>
+				<as:field name="registeredRedirectUri"/>
+				<as:field name="resourceIds"/>
+				<as:field name="authorizedGrantTypes"/>
+				<as:field name="scope"/>
+				<as:field name="autoApprove"/>
+				<as:field name="authorizedGrantTypes"/>
+				<as:field name="refreshTokenValiditySeconds"/>
+				<as:field name="disabled"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="OAuthAccessToken" component="custom-advanced-search">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="client" selected="true"/>
+				<as:field name="user" selected="true"/>
+				<as:field name="tokenId"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+<context merge-by="type" type="Product" component="grid-view">
+		<gv:grid-view>
+			<gv:additionalRenderer spring-bean="syncStatusCellRenderer"/>
+			<gv:additionalRenderer spring-bean="productApprovalStatusRenderer"/>
+			<gv:additionalRenderer spring-bean="productTypeMarkerRenderer"/>
+		</gv:grid-view>
+	</context>
+	<context merge-by="type" type="Media" component="grid-view">
+		<gv:grid-view>
+			<gv:additionalRenderer spring-bean="syncStatusCellRenderer"/>
+		</gv:grid-view>
+	</context>
+	<context merge-by="type" type="Category" component="grid-view">
+		<gv:grid-view>
+			<gv:additionalRenderer spring-bean="syncStatusCellRenderer"/>
+		</gv:grid-view>
+	</context>
+	<context merge-by="type" type="MediaContainer" component="grid-view">
+		<gv:grid-view>
+			<gv:additionalRenderer spring-bean="syncStatusCellRenderer"/>
+		</gv:grid-view>
+	</context>
+		<!-- compareView -->
+	<context type="Product" component="compare-view">
+		<cv:compare-view>
+			<cv:editor-area-ctx/>
+			<cv:grid-view-ctx/>
+			<cv:section name="hmc.tab.attribute" renderer="classificationCompareViewSectionRenderer"/>
+		</cv:compare-view>
+	</context>
+		<!-- simpleSearch -->
+	<context parent="GenericItem" type="CorsConfigurationProperty" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="context"/>
+		</ss:simple-search>
+	</context>
+	<!-- advancedSearch -->
+	<context parent="GenericItem" type="CorsConfigurationProperty" component="custom-advanced-search">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="context" selected="true" operator="contains"/>
+				<as:field name="key" selected="true"/>
+				<as:field name="value" selected="true"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+
+	<context principal="testEmployeeRole" component="custom-explorer-tree"
+		module="trainingbackoffice" access="testEmployeeRole,backofficeadministratorrole">
+		<et:explorer-tree>
+			<et:navigation-node
+				id="backoffice_dashboard" position="0" />
+			<et:navigation-node
+				id="hmc_backoffice-workflow-inbox" position="1" />
+			<et:navigation-node
+				id="hmc_treenode_system">
+				<et:navigation-node
+					id="hmc_type_tree_oauthserver">
+					<et:type-node
+						code="OAuthClientDetails" id="hmc_type_tree_oauthclientdetails" />
+					<et:type-node
+						code="OAuthAccessToken" id="type_tree_oauthaccesstoken" />
+				</et:navigation-node>
+			</et:navigation-node>
+		</et:explorer-tree>
+	</context>
+
+<context component="perspective-view-switcher" principal="testEmployeeRole" access="testEmployeeRole,backofficeadministratorrole">
+	<vs:view-switcher >
+		<vs:authority name="testEmployeeRole">
+			<vs:view id="custom-perspective"/>
+		</vs:authority>
+	<!-- 	<settings>
+        <setting key="defaultPerspective">customPerspective</setting>
+    </settings> -->
+	</vs:view-switcher>
+</context>
+
+<!-- <context component="custom-explorer-tree" module="trainingbackoffice" principal="testEmployeeRole">
+    <et:explorer-tree  title="Custom  Perspective">
+	<et:type-node code="" id=""/>
+    </et:explorer-tree>
+</context> -->
+
+<!--SimpleSearch components start -->
+	<context type="Item" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="pk"/>
+            <ss:sort-field asc="false"
+                           name="pk"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="ClassificationAttribute" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="ClassificationAttributeValue" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Catalog" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="id"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="C2LItem" type="Country" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="name"/>
+			<ss:field name="isocode"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="DeliveryMode" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="ClassificationAttributeUnit" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="symbol"/>
+			<ss:field name="unitType"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="WorkflowItemAttachment" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="CronJob" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="DistributedProcess" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="CronJob" type="Workflow" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="Job" type="BatchJob" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Title" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="C2LItem" type="Language" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="isocode"/>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Discount" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="Job" type="ServicelayerJob" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="BusinessProcess" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="ComposedType" type="ViewType" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Keyword" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="keyword"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="DeliveryMode" type="ZoneDeliveryMode" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="C2LItem" type="Region" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="name"/>
+			<ss:field name="isocode"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="AbstractWorkflowAction" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Category" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="AbstractAction" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="EnumerationValue" type="ArticleStatus" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="PaymentMode" type="StandardPaymentMode" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="ProductFeature" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="qualifier"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Zone" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="C2LItem" type="Currency" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="isocode"/>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="Job" type="ImpExImportJob" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Unit" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Tax" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="EnumerationValue" type="EncodingEnum" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="LocalizableItem" type="EnumerationValue" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="name"/>
+            <ss:sort-field asc="false"
+                           name="sequenceNumber"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Principal" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="uid"/>
+			<ss:field name="name"/>
+			<ss:sort-field asc="false" name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="CatalogVersion" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="version"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="AbstractWorkflowAction" type="WorkflowActionTemplate" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="PaymentMode" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Agreement" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="id"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="MediaFolder" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="qualifier"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Step" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="MediaContainer" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="qualifier"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="JaloTranslatorConfiguration" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+            <ss:sort-field asc="false"
+                           name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="ExtensibleItem" type="Link" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="qualifier"/>
+			<ss:sort-field asc="false"
+						   name="qualifier"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="SavedValues" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field
+					name="modifiedItemDisplayString"/>
+            <ss:sort-field asc="false"
+                           name="modifiedItemDisplayString"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Format" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="name"/>
+            <ss:sort-field asc="false"
+                           name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="Formatter" type="ItemFormatter" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="description"/>
+            <ss:sort-field asc="false"
+                           name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="RendererTemplate" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="TypeManagerManaged" type="Type" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="name"/>
+            <ss:sort-field asc="true"
+                           name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="AbstractMedia" type="Media" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="realFileName"/>
+            <ss:sort-field asc="false"
+                           name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Job" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="Job" type="WorkflowTemplate" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Product" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="EnumerationValue" type="IDType" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="AbstractOrder" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="AbstractOrderEntry" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="entryNumber"/>
+		</ss:simple-search>
+	</context>
+	<context type="Address" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="streetname"/>
+			<ss:field name="postalcode"/>
+			<ss:field name="town"/>
+			<ss:sort-field asc="true" name="streetname"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" parent="Item" type="MediaFormat" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="qualifier"/>
+			<ss:field name="name"/>
+		</ss:simple-search>
+	</context>
+	<context merge-by="type" type="JobLog" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="pk"/>
+		</ss:simple-search>
+	</context>
+	<context type="AbstractConstraint" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="pk"/>
+			<ss:field name="id"/>
+			<ss:field name="annotation"/>
+            <ss:sort-field asc="true"
+                           name="id"/>
+		</ss:simple-search>
+	</context>
+	<context type="AttributeDescriptor" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="pk"/>
+			<ss:field name="name"/>
+			<ss:field name="qualifier"/>
+            <ss:sort-field asc="true"
+                           name="qualifier"/>
+		</ss:simple-search>
+	</context>
+	<context type="ConstraintGroup" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="id"/>
+		</ss:simple-search>
+	</context>
+	<context type="AuditReportConfig" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context>
+	<context type="AbstractRetentionRule" component="custom-simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+		</ss:simple-search>
+	</context> 
+
+
+<!--Advanced Search-->
+	<context type="Item" component="custom-advanced-search">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="JaloTranslatorConfiguration" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="startsWith"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Link" component="custom-advanced-search" merge-by="type" parent="ExtensibleItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="qualifier" selected="true" operator="startsWith"/>
+				<as:field name="language"/>
+				<as:field name="reverseSequenceNumber"/>
+				<as:field name="sequenceNumber"/>
+				<as:field name="source"/>
+				<as:field name="target"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="SavedValues" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="modifiedItemType" selected="true"/>
+				<as:field name="modificationType" selected="true"/>
+				<as:field name="user" selected="true"/>
+				<as:field name="timestamp" selected="true"/>
+				<as:field name="modifiedItem"/>
+				<as:field name="modifiedItemDisplayString"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Format" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="chained"/>
+				<as:field name="code" selected="true" operator="startsWith"/>
+				<as:field name="name" selected="true" operator="startsWith"/>
+				<as:field name="documentType" selected="true"/>
+				<as:field name="initial"/>
+				<as:field name="validFor"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ItemFormatter" component="custom-advanced-search" merge-by="type" parent="Formatter">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="mime" selected="true" operator="startsWith"/>
+				<as:field name="catalogVersion" selected="true" operator="equals"/>
+				<as:field name="altText"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="dataPK"/>
+				<as:field name="description"/>
+				<as:field name="folder"/>
+				<as:field name="mediaContainer"/>
+				<as:field name="mediaFormat"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Media" component="custom-advanced-search" merge-by="type" parent="AbstractMedia">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="mime" selected="true" operator="startsWith"/>
+				<as:field name="folder" selected="true" operator="equals"/>
+				<as:field name="catalogVersion" selected="true" operator="equals"/>
+				<as:field name="altText"/>
+				<as:field name="description"/>
+				<as:field name="mediaContainer"/>
+				<as:field name="mediaFormat"/>
+				<as:field name="removable"/>
+				<as:field name="supercategories"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="dataPK"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="realFileName"/>
+				<as:field name="size"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="MediaFormatter" component="custom-advanced-search" merge-by="type" parent="Formatter">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="mime" selected="true" operator="startsWith"/>
+				<as:field name="catalogVersion" selected="true" operator="equals"/>
+				<as:field name="inputMimeType" selected="true" operator="startsWith"/>
+				<as:field name="altText"/>
+				<as:field name="formats"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="dataPK"/>
+				<as:field name="description"/>
+				<as:field name="folder"/>
+				<as:field name="mediaContainer"/>
+				<as:field name="mediaFormat"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="outputMimeType"/>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="realFileName"/>
+				<as:field name="removable"/>
+				<as:field name="size"/>
+				<as:field name="supercategories"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="RendererTemplate" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="startsWith"/>
+				<as:field name="content"/>
+				<as:field name="contextClass"/>
+				<as:field name="description"/>
+				<as:field name="outputMimeType"/>
+				<as:field name="rendererType"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Document" component="custom-advanced-search" merge-by="type" parent="Media">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="startsWith"/>
+				<as:field name="format" selected="true" operator="equals"/>
+				<as:field name="sourceItem" selected="true" operator="equals"/>
+				<as:field name="itemTimestamp"/>
+				<as:field name="altText"/>
+				<as:field name="catalogVersion"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="dataPK"/>
+				<as:field name="description"/>
+				<as:field name="folder"/>
+				<as:field name="mediaContainer"/>
+				<as:field name="mediaFormat"/>
+				<as:field name="mime"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="realFileName"/>
+				<as:field name="removable"/>
+				<as:field name="size"/>
+				<as:field name="supercategories"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Type" component="custom-advanced-search" merge-by="type" parent="TypeManagerManaged">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+				<as:field name="extensionName" selected="true" operator="contains"/>
+				<as:field name="defaultValue"/>
+				<as:field name="description"/>
+				<as:field name="autocreate"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="deprecated"/>
+				<as:field name="generate"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ViewType" component="custom-advanced-search" merge-by="type" parent="ComposedType">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="query"/>
+				<as:field name="autocreate"/>
+				<as:field name="catalogItemType"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="defaultValue"/>
+				<as:field name="deprecated"/>
+				<as:field name="description"/>
+				<as:field name="dynamic"/>
+				<as:field name="extensionName"/>
+				<as:field name="formats"/>
+				<as:field name="generate"/>
+				<as:field name="jaloclass"/>
+				<as:field name="jaloonly"/>
+				<as:field name="jndiName"/>
+				<as:field name="legacyPersistence"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="singleton"/>
+				<as:field name="superType"/>
+				<as:field name="systemType"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="SavedQuery" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="startsWith"/>
+				<as:field name="description"/>
+				<as:field name="name"/>
+				<as:field name="query"/>
+				<as:field name="resultType"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="SearchRestriction" component="custom-advanced-search" merge-by="type" parent="TypeManagerManaged">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="startsWith"/>
+				<as:field name="active"/>
+				<as:field name="principal"/>
+				<as:field name="query"/>
+				<as:field name="restrictedType"/>
+				<as:field name="autocreate"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="deprecated"/>
+				<as:field name="extensionName"/>
+				<as:field name="generate"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Job" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true"/>
+				<as:field name="active"/>
+				<as:field name="alternativeDataSourceID"/>
+				<as:field name="emailAddress"/>
+				<as:field name="emailNotificationTemplate"/>
+				<as:field name="errorMode"/>
+				<as:field name="logLevelDatabase"/>
+				<as:field name="logLevelFile"/>
+				<as:field name="logToDatabase"/>
+				<as:field name="logToFile"/>
+				<as:field name="nodeID"/>
+				<as:field name="priority"/>
+				<as:field name="removeOnExit"/>
+				<as:field name="requestAbort"/>
+				<as:field name="requestAbortStep"/>
+				<as:field name="retry"/>
+				<as:field name="sendEmail"/>
+				<as:field name="sessionCurrency"/>
+				<as:field name="sessionLanguage"/>
+				<as:field name="sessionUser"/>
+				<as:field name="singleExecutable"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="CronJob" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="startsWith"/>
+				<as:field name="job" selected="true" operator="equals"/>
+				<as:field name="status" selected="true" operator="equals"/>
+				<as:field name="result" selected="true" operator="equals"/>
+				<as:field name="active"/>
+				<as:field name="alternativeDataSourceID"/>
+				<as:field name="currentStep"/>
+				<as:field name="emailAddress"/>
+				<as:field name="emailNotificationTemplate"/>
+				<as:field name="endTime"/>
+				<as:field name="errorMode"/>
+				<as:field name="logLevelDatabase"/>
+				<as:field name="logLevelFile"/>
+				<as:field name="logToDatabase"/>
+				<as:field name="logToFile"/>
+				<as:field name="nodeID"/>
+				<as:field name="pendingSteps"/>
+				<as:field name="priority"/>
+				<as:field name="processedSteps"/>
+				<as:field name="removeOnExit"/>
+				<as:field name="requestAbort"/>
+				<as:field name="requestAbortStep"/>
+				<as:field name="retry"/>
+				<as:field name="sendEmail"/>
+				<as:field name="sessionCurrency"/>
+				<as:field name="sessionLanguage"/>
+				<as:field name="sessionUser"/>
+				<as:field name="singleExecutable"/>
+				<as:field name="startTime"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="DistributedProcess" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="startsWith"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="status" selected="true" operator="equals"/>
+				<as:field name="state" selected="true" operator="equals"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Workflow" component="custom-advanced-search" merge-by="type" parent="CronJob">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+				<as:field name="owner" selected="true" operator="equals"/>
+				<as:field name="job" selected="true" operator="equals"/>
+				<as:field name="status" selected="true" operator="equals"/>
+				<as:field name="description"/>
+				<as:field name="active"/>
+				<as:field name="alternativeDataSourceID"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="currentStep"/>
+				<as:field name="emailAddress"/>
+				<as:field name="emailNotificationTemplate"/>
+				<as:field name="endTime"/>
+				<as:field name="errorMode"/>
+				<as:field name="logLevelDatabase"/>
+				<as:field name="logLevelFile"/>
+				<as:field name="logToDatabase"/>
+				<as:field name="logToFile"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="nodeID"/>
+				<as:field name="pendingSteps"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="priority"/>
+				<as:field name="processedSteps"/>
+				<as:field name="removeOnExit"/>
+				<as:field name="requestAbort"/>
+				<as:field name="requestAbortStep"/>
+				<as:field name="result"/>
+				<as:field name="retry"/>
+				<as:field name="sendEmail"/>
+				<as:field name="sessionCurrency"/>
+				<as:field name="sessionLanguage"/>
+				<as:field name="sessionUser"/>
+				<as:field name="singleExecutable"/>
+				<as:field name="startTime"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="WorkflowTemplate" component="custom-advanced-search" merge-by="type" parent="Job">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains" position="1"/>
+				<as:field name="name" selected="true" operator="contains" position="2"/>
+				<as:field name="owner" selected="true" operator="equals" position="3"/>
+				<as:field name="activationScript"/>
+				<as:field name="description"/>
+				<as:field name="visibleForPrincipals"/>
+				<as:field name="active"/>
+				<as:field name="alternativeDataSourceID"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="emailAddress"/>
+				<as:field name="emailNotificationTemplate"/>
+				<as:field name="errorMode"/>
+				<as:field name="logLevelDatabase"/>
+				<as:field name="logLevelFile"/>
+				<as:field name="logToDatabase"/>
+				<as:field name="logToFile"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="nodeID"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="priority"/>
+				<as:field name="removeOnExit"/>
+				<as:field name="requestAbort"/>
+				<as:field name="requestAbortStep"/>
+				<as:field name="retry"/>
+				<as:field name="sendEmail"/>
+				<as:field name="sessionCurrency"/>
+				<as:field name="sessionLanguage"/>
+				<as:field name="sessionUser"/>
+				<as:field name="singleExecutable"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="AbstractWorkflowAction" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="startsWith"/>
+				<as:field name="name" selected="true" operator="startsWith"/>
+				<as:field name="principalAssigned"/>
+				<as:field name="actionType"/>
+				<as:field name="description"/>
+				<as:field name="emailAddress"/>
+				<as:field name="predecessors"/>
+				<as:field name="rendererTemplate"/>
+				<as:field name="sendEmail"/>
+				<as:field name="successors"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+
+	<!-- we don't inherit AbstractWorkflowAction because WorkflowAction is Inbox therefore we display fewer fields -->
+	<context type="WorkflowAction" component="custom-advanced-search" merge-by="type">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" operator="startsWith"/>
+				<as:field name="name" operator="startsWith"/>
+				<as:field name="status" selected="true" operator="equals"/>
+				<as:field name="workflow" selected="true" operator="equals"/>
+				<as:field name="activated"/>
+				<as:field name="attachments"/>
+				<as:field name="comment"/>
+				<as:field name="firstActivated"/>
+				<as:field name="incomingDecisions"/>
+				<as:field name="selectedDecision"/>
+				<as:field name="template"/>
+				<as:field name="actionType"/>
+				<as:field name="comments"/>
+				<as:field name="description"/>
+				<as:field name="emailAddress"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="predecessors"/>
+				<as:field name="rendererTemplate"/>
+				<as:field name="sendEmail"/>
+				<as:field name="successors"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ConstraintGroup" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="id" selected="true" operator="startsWith"/>
+				<as:field name="interfaceName" selected="true" operator="startsWith"/>
+				<as:field name="constraints"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="AbstractConstraint" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+        <as:advanced-search>
+			<as:field-list>
+				<as:field name="id" selected="true" operator="startsWith"/>
+				<as:field name="severity" selected="true" operator="equals"/>
+				<as:field name="active" selected="true"/>
+				<as:field name="annotation" selected="true" operator="equals"/>
+				<as:field name="constraintGroups"/>
+				<as:field name="message"/>
+				<as:field name="target"/>
+				<as:field name="type"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="AttributeConstraint" component="custom-advanced-search" merge-by="type" parent="AbstractConstraint">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="type" selected="true"/>
+				<as:field name="qualifier" selected="true"/>
+				<as:field name="descriptor"/>
+				<as:field name="comments"/>
+				<as:field name="constraintGroups"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="message"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="target"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="TypeConstraint" component="custom-advanced-search" merge-by="type" parent="AbstractConstraint">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="type" selected="true"/>
+				<as:field name="comments"/>
+				<as:field name="constraintGroups"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="message"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="target"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="BusinessProcess" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true"/>
+				<as:field name="processDefinitionName" selected="true"/>
+				<as:field name="endMessage"/>
+				<as:field name="state"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Category" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+				<as:field name="catalogVersion" selected="true" operator="equals"/>
+				<as:field name="allowedPrincipals"/>
+				<as:field name="categories"/>
+				<as:field name="description"/>
+				<as:field name="keywords"/>
+				<as:field name="medias"/>
+				<as:field name="order"/>
+				<as:field name="picture"/>
+				<as:field name="products"/>
+				<as:field name="supercategories"/>
+				<as:field name="thumbnail"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Catalog" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="id" selected="true" operator="startsWith"/>
+				<as:field name="name" selected="true" operator="startsWith"/>
+				<as:field name="activeCatalogVersion"/>
+				<as:field name="buyer"/>
+				<as:field name="defaultCatalog"/>
+				<as:field name="previewURLTemplate"/>
+				<as:field name="supplier"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Product" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+				<as:field name="catalogVersion" selected="true" operator="equals"/>
+				<as:field name="variantType" selected="true" operator="equals"/>
+				<as:field name="Europe1PriceFactory_PDG"/>
+				<as:field name="Europe1PriceFactory_PPG"/>
+				<as:field name="Europe1PriceFactory_PTG"/>
+				<as:field name="approvalStatus"/>
+				<as:field name="articleStatus"/>
+				<as:field name="contentUnit"/>
+				<as:field name="deliveryTime"/>
+				<as:field name="description"/>
+				<as:field name="ean"/>
+				<as:field name="endLineNumber"/>
+				<as:field name="erpGroupBuyer"/>
+				<as:field name="erpGroupSupplier"/>
+				<as:field name="keywords"/>
+				<as:field name="manufacturerAID"/>
+				<as:field name="manufacturerName"/>
+				<as:field name="manufacturerTypeDescription"/>
+				<as:field name="maxOrderQuantity"/>
+				<as:field name="minOrderQuantity"/>
+				<as:field name="numberContentUnits"/>
+				<as:field name="offlineDate"/>
+				<as:field name="onlineDate"/>
+				<as:field name="order"/>
+				<as:field name="orderQuantityInterval"/>
+				<as:field name="picture"/>
+				<as:field name="priceQuantity"/>
+				<as:field name="remarks"/>
+				<as:field name="segment"/>
+				<as:field name="startLineNumber"/>
+				<as:field name="supercategories"/>
+				<as:field name="supplierAlternativeAID"/>
+				<as:field name="thumbnail"/>
+				<as:field name="unit"/>
+				<as:field name="xmlcontent"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Unit" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="conversion"/>
+				<as:field name="name"/>
+				<as:field name="unitType"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Keyword" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="keyword" selected="true" operator="startsWith"/>
+				<as:field name="catalogVersion" selected="true" operator="equals"/>
+				<as:field name="language" selected="true" operator="equals"/>
+				<as:field name="categories"/>
+				<as:field name="products"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ClassificationClass" component="custom-advanced-search" merge-by="type" parent="Category">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="startsWith"/>
+				<as:field name="catalogVersion" selected="true" operator="equals"/>
+				<as:field name="externalID" selected="true" operator="startsWith"/>
+				<as:field name="revision"/>
+				<as:field name="showEmptyAttributes"/>
+				<as:field name="allowedPrincipals"/>
+				<as:field name="categories"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="description"/>
+				<as:field name="keywords"/>
+				<as:field name="medias"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="order"/>
+				<as:field name="owner"/>
+				<as:field name="picture"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="products"/>
+				<as:field name="supercategories"/>
+				<as:field name="thumbnail"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ClassificationAttribute" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+				<as:field name="systemVersion" selected="true" operator="equals"/>
+				<as:field name="externalID"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ClassificationAttributeValue" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+				<as:field name="systemVersion" selected="true" operator="equals"/>
+				<as:field name="externalID"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ClassificationAttributeUnit" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="symbol" selected="true" operator="equals"/>
+				<as:field name="systemVersion" selected="true" operator="equals"/>
+				<as:field name="conversionFactor"/>
+				<as:field name="externalID"/>
+				<as:field name="name"/>
+				<as:field name="unitType"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="MediaFolder" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="path" selected="true" operator="startsWith"/>
+				<as:field name="qualifier" selected="true" operator="startsWith"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="MediaContainer" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="qualifier" selected="true" operator="startsWith"/>
+				<as:field name="name" selected="true" operator="startsWith"/>
+				<as:field name="catalogVersion" selected="true" operator="equals"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="MediaFormat" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="name" selected="true" operator="startsWith"/>
+				<as:field name="qualifier" selected="true" operator="startsWith"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="externalID"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="MediaContext" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="qualifier" selected="true" operator="startsWith"/>
+				<as:field name="name" selected="true" operator="startsWith"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="PrincipalGroup" component="custom-advanced-search" merge-by="type" parent="Principal">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="uid" selected="true"/>
+				<as:field name="locName" selected="true"/>
+				<as:field name="members"/>
+				<as:field name="accessibleCategories"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="description"/>
+				<as:field name="groups"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="profilePicture"/>
+				<as:field name="readableCatalogVersions"/>
+				<as:field name="syncJobs"/>
+				<as:field name="visibleTemplates"/>
+				<as:field name="watchedComments"/>
+				<as:field name="writableCatalogVersions"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Principal" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="uid" selected="true"/>
+				<as:field name="accessibleCategories"/>
+				<as:field name="description"/>
+				<as:field name="groups" selected="true"/>
+				<as:field name="name"/>
+				<as:field name="profilePicture"/>
+				<as:field name="readableCatalogVersions"/>
+				<as:field name="syncJobs"/>
+				<as:field name="visibleTemplates"/>
+				<as:field name="watchedComments"/>
+				<as:field name="writableCatalogVersions"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="User" component="custom-advanced-search" merge-by="type" parent="Principal">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="deactivationDate"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="UserGroup" component="custom-advanced-search" merge-by="type" parent="PrincipalGroup">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="uid" selected="true" operator="startsWith"/>
+				<as:field name="locName" selected="true" operator="startsWith"/>
+				<as:field name="userDiscountGroup"/>
+				<as:field name="userPriceGroup"/>
+				<as:field name="userTaxGroup"/>
+				<as:field name="accessibleCategories"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="description"/>
+				<as:field name="groups"/>
+				<as:field name="members"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="profilePicture"/>
+				<as:field name="readableCatalogVersions"/>
+				<as:field name="syncJobs"/>
+				<as:field name="visibleTemplates"/>
+				<as:field name="watchedComments"/>
+				<as:field name="writableCatalogVersions"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Employee" component="custom-advanced-search" merge-by="type" parent="User">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="uid" selected="true" operator="startsWith"/>
+				<as:field name="name" selected="true" operator="startsWith"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Customer" component="custom-advanced-search" merge-by="type" parent="User">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="uid" selected="true" operator="startsWith"/>
+				<as:field name="name" selected="true" operator="startsWith"/>
+				<as:field name="customerID" selected="true" operator="startsWith"/>
+				<as:field name="Europe1PriceFactory_UDG"/>
+				<as:field name="Europe1PriceFactory_UPG"/>
+				<as:field name="Europe1PriceFactory_UTG"/>
+				<as:field name="accessibleCategories"/>
+				<as:field name="assignedComments"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="description"/>
+				<as:field name="encodedPassword"/>
+				<as:field name="groups"/>
+				<as:field name="lastLogin"/>
+				<as:field name="loginDisabled"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="password"/>
+				<as:field name="passwordAnswer"/>
+				<as:field name="passwordEncoding"/>
+				<as:field name="passwordQuestion"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="profilePicture"/>
+				<as:field name="readableCatalogVersions"/>
+				<as:field name="sessionCurrency"/>
+				<as:field name="sessionLanguage"/>
+				<as:field name="syncJobs"/>
+				<as:field name="userprofile"/>
+				<as:field name="visibleTemplates"/>
+				<as:field name="watchedComments"/>
+				<as:field name="writableCatalogVersions"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Address" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field editor="com.hybris.cockpitng.editor.defaultreferenceeditor" name="owner" selected="true">
+					<as:editor-parameter>
+						<as:name>restrictToType</as:name>
+						<as:value>Principal</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="lastname"/>
+				<as:field name="streetname"/>
+				<as:field name="town"/>
+				<as:field name="appartment"/>
+				<as:field name="billingAddress"/>
+				<as:field name="building"/>
+				<as:field name="cellphone"/>
+				<as:field name="company"/>
+				<as:field name="contactAddress"/>
+				<as:field name="country"/>
+				<as:field name="dateOfBirth"/>
+				<as:field name="department"/>
+				<as:field name="district"/>
+				<as:field name="email"/>
+				<as:field name="fax"/>
+				<as:field name="firstname"/>
+				<as:field name="gender"/>
+				<as:field name="middlename"/>
+				<as:field name="middlename2"/>
+				<as:field name="original"/>
+				<as:field name="phone1"/>
+				<as:field name="phone2"/>
+				<as:field name="pobox"/>
+				<as:field name="postalcode"/>
+				<as:field name="publicKey"/>
+				<as:field name="region"/>
+				<as:field name="remarks"/>
+				<as:field name="shippingAddress"/>
+				<as:field name="streetnumber"/>
+				<as:field name="title"/>
+				<as:field name="unloadingAddress"/>
+				<as:field name="url"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Title" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Agreement" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="id" selected="true" operator="startsWith"/>
+				<as:field name="buyer" selected="true" operator="equals"/>
+				<as:field name="supplier" selected="true" operator="equals"/>
+				<as:field name="startdate" selected="true" operator="equals"/>
+				<as:field name="enddate" selected="true" operator="equals"/>
+				<as:field name="CatalogVersion"/>
+				<as:field name="buyerContact"/>
+				<as:field name="currency"/>
+				<as:field name="supplierContact"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="AbstractOrder" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="date" selected="true" operator="greater"/>
+				<as:field name="user" selected="true" operator="equals"/>
+				<as:field name="calculated"/>
+				<as:field name="currency"/>
+				<as:field name="deliveryAddress"/>
+				<as:field name="deliveryCost"/>
+				<as:field name="deliveryMode"/>
+				<as:field name="deliveryStatus"/>
+				<as:field name="discounts"/>
+				<as:field name="discountsIncludeDeliveryCost"/>
+				<as:field name="discountsIncludePaymentCost"/>
+				<as:field name="exportStatus"/>
+				<as:field name="net">
+					<as:editor-parameter>
+						<as:name>trueLabel</as:name>
+						<as:value>netTrue</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>falseLabel</as:name>
+						<as:value>netFalse</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="paymentAddress"/>
+				<as:field name="paymentCost"/>
+				<as:field name="paymentInfo"/>
+				<as:field name="paymentMode"/>
+				<as:field name="paymentStatus"/>
+				<as:field name="status"/>
+				<as:field name="statusInfo"/>
+				<as:field name="subtotal"/>
+				<as:field name="totalDiscounts"/>
+				<as:field name="totalPrice"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="AbstractOrderEntry" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="product" selected="true" operator="equals"/>
+				<as:field name="calculated"/>
+				<as:field name="entryNumber"/>
+				<as:field name="giveAway"/>
+				<as:field name="info"/>
+				<as:field name="order"/>
+				<as:field name="quantity"/>
+				<as:field name="rejected"/>
+				<as:field name="unit"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="EnumerationValue" component="custom-advanced-search" merge-by="type" parent="LocalizableItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="deprecated"/>
+				<as:field name="extensionName"/>
+				<as:field name="icon"/>
+				<as:field name="name"/>
+				<as:field name="sequenceNumber"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ProductPriceGroup" component="custom-advanced-search" merge-by="type" parent="EnumerationValue">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="name" selected="true" operator="contains"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="PriceRow" component="custom-advanced-search" merge-by="type" parent="PDTRow">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="product" selected="true" operator="equals"/>
+				<as:field name="pg" selected="true" operator="equals"/>
+				<as:field name="user" selected="true" operator="equals"/>
+				<as:field name="ug" selected="true" operator="equals"/>
+				<as:field name="channel"/>
+				<as:field name="currency"/>
+				<as:field name="giveAwayPrice"/>
+				<as:field name="matchValue"/>
+				<as:field name="minqtd"/>
+				<as:field name="net">
+					<as:editor-parameter>
+						<as:name>trueLabel</as:name>
+						<as:value>netTrue</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>falseLabel</as:name>
+						<as:value>netFalse</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="price"/>
+				<as:field name="unit"/>
+				<as:field name="unitFactor"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="endTime"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="productMatchQualifier"/>
+				<as:field name="startTime"/>
+				<as:field name="userMatchQualifier"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Tax" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+				<as:field name="currency"/>
+				<as:field name="value"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="TaxRow" component="custom-advanced-search" merge-by="type" parent="PDTRow">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="product" selected="true" operator="equals"/>
+				<as:field name="pg" selected="true" operator="equals"/>
+				<as:field name="user" selected="true" operator="equals"/>
+				<as:field name="ug" selected="true" operator="equals"/>
+				<as:field name="catalogVersion" selected="true" operator="equals"/>
+				<as:field name="currency"/>
+				<as:field name="tax"/>
+				<as:field name="value"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="endTime"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+				<as:field name="productMatchQualifier"/>
+				<as:field name="startTime"/>
+				<as:field name="userMatchQualifier"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Discount" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+				<as:field name="currency"/>
+				<as:field name="global"/>
+				<as:field name="orders"/>
+				<as:field name="priority"/>
+				<as:field name="value"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="UserPriceGroup" component="custom-advanced-search" merge-by="type" parent="EnumerationValue">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ProductTaxGroup" component="custom-advanced-search" merge-by="type" parent="EnumerationValue">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="UserTaxGroup" component="custom-advanced-search" merge-by="type" parent="EnumerationValue">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ProductDiscountGroup" component="custom-advanced-search" merge-by="type" parent="EnumerationValue">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="UserDiscountGroup" component="custom-advanced-search" merge-by="type" parent="EnumerationValue">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="name" selected="true" operator="contains"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="AbstractDiscountRow" component="custom-advanced-search" merge-by="type" parent="PDTRow">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="user" selected="true" operator="equals"/>
+				<as:field name="ug" selected="true" operator="equals"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="DeliveryMode" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true"/>
+				<as:field name="active"/>
+				<as:field name="description"/>
+				<as:field name="name"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ZoneDeliveryMode" component="custom-advanced-search" merge-by="type" parent="DeliveryMode">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true"/>
+				<as:field name="net">
+					<as:editor-parameter>
+						<as:name>trueLabel</as:name>
+						<as:value>netTrue</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>falseLabel</as:name>
+						<as:value>netFalse</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="propertyName"/>
+				<as:field name="active"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="description"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="PaymentMode" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="active"/>
+				<as:field name="description"/>
+				<as:field name="name"/>
+				<as:field name="paymentInfoType"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="StandardPaymentMode" component="custom-advanced-search" merge-by="type" parent="PaymentMode">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true" operator="contains"/>
+				<as:field name="net">
+					<as:editor-parameter>
+						<as:name>trueLabel</as:name>
+						<as:value>netTrue</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>falseLabel</as:name>
+						<as:value>netFalse</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="active"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="description"/>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="owner"/>
+				<as:field name="paymentInfoType"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Language" component="custom-advanced-search" merge-by="type" parent="C2LItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="isocode" selected="true"/>
+				<as:field name="active"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Currency" component="custom-advanced-search" merge-by="type" parent="C2LItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="isocode" selected="true"/>
+				<as:field name="base"/>
+				<as:field name="conversion"/>
+				<as:field name="digits"/>
+				<as:field name="symbol"/>
+				<as:field name="active"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Country" component="custom-advanced-search" merge-by="type" parent="C2LItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="isocode" selected="true"/>
+				<as:field name="zones"/>
+				<as:field name="active"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="Region" component="custom-advanced-search" merge-by="type" parent="C2LItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="isocode" selected="true"/>
+				<as:field name="country"/>
+				<as:field name="active"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="name"/>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="ProductReference" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="qualifier" selected="true"/>
+				<as:field name="source" selected="true"/>
+				<as:field name="target" selected="true"/>
+				<as:field name="referenceType" selected="true"/>
+				<as:field name="active"/>
+				<as:field name="description"/>
+				<as:field name="icon"/>
+				<as:field name="preselected"/>
+				<as:field name="quantity"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context type="CatalogVersion" component="custom-advanced-search" merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="active" selected="true"/>
+				<as:field name="catalog" selected="true"/>
+				<as:field name="version" selected="true"/>
+				<as:field name="categorySystemDescription"/>
+				<as:field name="categorySystemID"/>
+				<as:field name="categorySystemName"/>
+				<as:field name="defaultCurrency"/>
+				<as:field name="generationDate"/>
+				<as:field name="generatorInfo"/>
+				<as:field name="inclAssurance"/>
+				<as:field name="inclDuty"/>
+				<as:field name="inclFreight"/>
+				<as:field name="inclPacking"/>
+				<as:field name="mimeRootDirectory"/>
+				<as:field name="previousUpdateVersion"/>
+				<as:field name="readPrincipals"/>
+				<as:field name="writePrincipals"/>
+				<as:field name="comments"/>
+				<as:field name="creationtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="modifiedtime">
+					<as:editor-parameter>
+						<as:name>equalsComparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+					<as:editor-parameter>
+						<as:name>comparesExactDate</as:name>
+						<as:value>true</as:value>
+					</as:editor-parameter>
+				</as:field>
+				<as:field name="owner"/>
+				<as:field name="pk" editor="com.hybris.cockpitng.editor.defaultlong"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context merge-by="type" parent="AbstractDynamicContent" type="Script" component="custom-advanced-search">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" operator="contains" selected="true"/>
+				<as:field name="scriptType" selected="true"/>
+				<as:field name="description" selected="true"/>
+				<as:field name="active" operator="yes" selected="true"/>
+				<as:field name="version" selected="true"/>
+				<as:field name="autodisabling" selected="true"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context merge-by="type" parent="Task" type="ScriptingTask" component="custom-advanced-search">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="scriptURI" selected="true"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context merge-by="type" parent="AbstractDynamicContent" type="DynamicProcessDefinition"
+			 component="custom-advanced-search">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" selected="true"/>
+				<as:field name="active" selected="true"/>
+				<as:field name="version" selected="true"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context merge-by="type" type="JobLog" component="custom-advanced-search">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="pk" selected="true"/>
+				<as:field name="cronJob" selected="true"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<context merge-by="type" type="AttributeDescriptor" component="custom-advanced-search">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="qualifier" operator="contains" selected="true"/>
+				<as:field name="enclosingType" selected="true"/>
+				<as:field name="pk"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+<!--custom -advanced-search ends-->
+
+<!--Listviews -->
+	<context merge-by="type" parent="GenericItem" type="JaloTranslatorConfiguration" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="ExtensibleItem" type="Link" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="qualifier"/>
+			<lv:column qualifier="source"/>
+			<lv:column qualifier="target"/>
+			<lv:column qualifier="language"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="SavedValues" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="timestamp"/>
+			<lv:column qualifier="modificationType"/>
+			<lv:column qualifier="modifiedItemType"/>
+			<lv:column qualifier="user"/>
+			<lv:column qualifier="modifiedItemDisplayString"/>
+		</lv:list-view>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="BackofficeSavedQuery" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="typeCode"/>
+			<lv:column qualifier="includeSubtypes"/>
+			<lv:column qualifier="queryOwner"/>
+		</lv:list-view>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="Format" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="Formatter" type="ItemFormatter" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="mime"/>
+			<lv:column qualifier="folder"/>
+			<lv:column qualifier="catalogVersion"/>
+			<lv:column qualifier="outputMimeType"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="Formatter" type="MediaFormatter" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="inputMimeType" position="1"/>
+			<lv:column qualifier="code" position="2"/>
+			<lv:column qualifier="mime" position="3"/>
+			<lv:column qualifier="folder" position="4"/>
+			<lv:column qualifier="catalogVersion" position="5"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="Media" type="Document" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="mime" merge-mode="REMOVE"/>
+			<lv:column qualifier="folder" merge-mode="REMOVE"/>
+			<lv:column qualifier="catalogVersion" merge-mode="REMOVE"/>
+			<lv:column qualifier="code" position="1"/>
+			<lv:column qualifier="format" position="2"/>
+		</lv:list-view>
+	</context>
+	<context type="Document" component="outDocEditorList">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="format"/>
+			<lv:column qualifier="syncStatus" spring-bean="downloadMediaCellRenderer" label="output.documents.actions"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="RendererTemplate" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="TypeManagerManaged" type="Type" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="extensionName"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="AbstractMedia" type="Media" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="" spring-bean="previewListCellRenderer"/>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="mime"/>
+			<lv:column qualifier="folder"/>
+			<lv:column qualifier="syncStatus" spring-bean="syncStatusCellRenderer" label="syncstatus.column.label"/>
+			<lv:column qualifier="catalogVersion"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="SavedQuery" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="resultType"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="ComposedType" type="ViewType" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="code"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="TypeManagerManaged" type="SearchRestriction" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="active"/>
+			<lv:column qualifier="restrictedType"/>
+			<lv:column qualifier="principal"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Job" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="Job" type="WorkflowTemplate" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="owner"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="CronJob" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="job"/>
+			<lv:column qualifier="status"/>
+			<lv:column qualifier="result"/>
+			<lv:column qualifier="timeTable"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="DistributedProcess" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="currentExecutionId"/>
+			<lv:column qualifier="status"/>
+			<lv:column qualifier="state"/>
+			<lv:column qualifier="creationtime"/>
+			<lv:column qualifier="modifiedtime"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="CronJob" type="Workflow" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="pk" merge-mode="REMOVE"/>
+			<lv:column qualifier="code" position="1"/>
+			<lv:column qualifier="name" position="2"/>
+			<lv:column qualifier="owner" position="3"/>
+			<lv:column qualifier="job" position="4"/>
+			<lv:column qualifier="status" position="5"/>
+			<lv:column qualifier="result" merge-mode="REMOVE"/>
+			<lv:column qualifier="timeTable" merge-mode="REMOVE"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="AbstractWorkflowAction" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code" position="1"/>
+			<lv:column qualifier="name" position="2"/>
+			<lv:column qualifier="principalAssigned" position="3"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="AbstractWorkflowAction" type="WorkflowAction" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="activated" position="4"/>
+			<lv:column qualifier="status" position="5"/>
+			<lv:column qualifier="workflow" position="6"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="ConstraintGroup" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="id"/>
+			<lv:column qualifier="constraints"/>
+			<lv:column qualifier="interfaceName"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="AbstractConstraint" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="id"/>
+			<lv:column qualifier="severity"/>
+			<lv:column qualifier="active"/>
+			<lv:column qualifier="needReload"/>
+            <lv:column qualifier="target?.simpleName" label="com.hybris.cockpitng.collectionBrowser.abstractconstraint.label.target"/>
+			<lv:column qualifier="constraintGroups"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="BusinessProcess" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="processDefinitionName"/>
+			<lv:column qualifier="processState"/>
+			<lv:column qualifier="endMessage"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Category" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name" hflex="true"/>
+			<lv:column qualifier="syncStatus" spring-bean="syncStatusCellRenderer" label="syncstatus.column.label"/>
+			<lv:column qualifier="catalogVersion"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Catalog" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="id"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Product" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="preview" spring-bean="previewListCellRenderer" label="" width="90px"/>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name" hflex="true"/>
+            <lv:column qualifier="productStatus" spring-bean="productStatusRenderer" label="product.status.column.label" width="120px"/>
+			<lv:column qualifier="catalogVersion"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Unit" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="unitType"/>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Keyword" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="keyword"/>
+			<lv:column qualifier="catalogVersion"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="ClassificationAttribute" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="systemVersion"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="ClassificationAttributeValue" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="systemVersion"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="ClassificationAttributeUnit" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="symbol"/>
+			<lv:column qualifier="systemVersion"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="MediaFolder" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="qualifier"/>
+			<lv:column qualifier="path"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="MediaContainer" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="qualifier"/>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="syncStatus" spring-bean="syncStatusCellRenderer" label="syncstatus.column.label"/>
+			<lv:column qualifier="catalogVersion"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="MediaFormat" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="qualifier"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="MediaContext" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="qualifier"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Principal" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="uid"/>
+			<lv:column qualifier="displayName"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="User" type="Customer" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="customerID"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Address" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="lastname"/>
+			<lv:column qualifier="firstname"/>
+			<lv:column qualifier="town"/>
+			<lv:column qualifier="email"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Title" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Agreement" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="id"/>
+			<lv:column qualifier="buyer"/>
+			<lv:column qualifier="supplier"/>
+			<lv:column qualifier="startdate"/>
+			<lv:column qualifier="enddate"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="AbstractOrder" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="date"/>
+			<lv:column qualifier="totalPrice" spring-bean="standardCurrencyListViewRenderer"/>
+			<lv:column qualifier="user"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Quote" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="date"/>
+			<lv:column qualifier="totalPrice" spring-bean="standardCurrencyListViewRenderer"/>
+			<lv:column qualifier="user"/>
+			<lv:column qualifier="version"/>
+			<lv:column qualifier="state"/>
+			<lv:column qualifier="expirationTime"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="AbstractOrderEntry" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="product"/>
+			<lv:column qualifier="quantity"/>
+			<lv:column qualifier="basePrice" spring-bean="standardCurrencyListViewRenderer"/>
+			<lv:column qualifier="totalPrice" spring-bean="standardCurrencyListViewRenderer"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="LocalizableItem" type="EnumerationValue" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="icon"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="PDTRow" type="PriceRow" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="product"/>
+			<lv:column qualifier="pg"/>
+			<lv:column qualifier="user"/>
+			<lv:column qualifier="ug"/>
+			<lv:column qualifier="price" spring-bean="standardCurrencyListViewRenderer"/>
+			<lv:column qualifier="currency"/>
+			<lv:column qualifier="channel"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Tax" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="value"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="PDTRow" type="TaxRow" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="product"/>
+			<lv:column qualifier="pg"/>
+			<lv:column qualifier="user"/>
+			<lv:column qualifier="ug"/>
+			<lv:column qualifier="value"/>
+			<lv:column qualifier="tax"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Discount" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="discountString"/>
+			<lv:column qualifier="global"/>
+			<lv:column qualifier="priority"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="PDTRow" type="AbstractDiscountRow" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="user"/>
+			<lv:column qualifier="ug"/>
+			<lv:column qualifier="discount"/>
+			<lv:column qualifier="discountString"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="DeliveryMode" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="DeliveryMode" type="ZoneDeliveryMode" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="active"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="PaymentMode" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="PaymentMode" type="StandardPaymentMode" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="active"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="C2LItem" type="Language" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="active"/>
+			<lv:column qualifier="isocode"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="C2LItem" type="Currency" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="active"/>
+			<lv:column qualifier="base"/>
+			<lv:column qualifier="isocode"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="C2LItem" type="Country" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="active"/>
+			<lv:column qualifier="isocode"/>
+			<lv:column qualifier="name"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="C2LItem" type="Region" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="active"/>
+			<lv:column qualifier="isocode"/>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="country"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="ProductReference" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="source"/>
+			<lv:column qualifier="qualifier"/>
+			<lv:column qualifier="target"/>
+			<lv:column qualifier="referenceType"/>
+			<lv:column qualifier="active"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="CatalogVersion" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="catalog"/>
+			<lv:column qualifier="version" hflex="true"/>
+			<lv:column qualifier="active"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" parent="Job" type="SyncItemJob" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="code"/>
+			<lv:column qualifier="sourceVersion"/>
+			<lv:column qualifier="targetVersion"/>
+		</lv:list-view>
+	</context>
+	<context merge-by="type" type="JobLog" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="level"/>
+			<lv:column qualifier="pk"/>
+			<lv:column qualifier="cronJob"/>
+			<lv:column qualifier="creationtime"/>
+			<lv:column qualifier="shortMessage"/>
+		</lv:list-view>
+	</context>
+	<context type="ClassAttributeAssignment" component="referenceListView">
+		<lv:list-view>
+			<lv:column qualifier="classificationAttribute"/>
+			<lv:column qualifier="attributeType"/>
+			<lv:column qualifier="unit"/>
+			<lv:column qualifier="mandatory"/>
+			<lv:column qualifier="attributeValues"/>
+		</lv:list-view>
+	</context>
+	<context type="SystemSetupAudit" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="name"/>
+			<lv:column qualifier="extensionName"/>
+			<lv:column qualifier="className"/>
+			<lv:column qualifier="methodName"/>
+			<lv:column qualifier="patch"/>
+			<lv:column qualifier="required"/>
+		</lv:list-view>
+	</context>
+
+	<context type="AttributeDescriptor" component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="qualifier"/>
+			<lv:column qualifier="enclosingType"/>
+			<lv:column qualifier="extensionName"/>
+			<lv:column qualifier="pk"/>
+		</lv:list-view>
+	</context>
+
+	<!--ListViewActions -->
+	<context type="Item" component="customlistviewactions">
+		<y:actions>
+			<y:group qualifier="common" show-group-header="false" position="10">
+				<y:action action-id="com.hybris.cockpitng.action.create" property="pageable.typeCode" position="10"/>
+				<y:action action-id="com.hybris.cockpitng.action.delete" property="selectedObjects"
+						  triggerOnKeys="#del" position="20"/>
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" property="exportColumnsAndData"
+						  position="30"/>
+			</y:group>
+			<y:group qualifier="bulk" show-group-header="false" position="20">
+				<y:action id="compare" action-id="com.hybris.cockpitng.action.message" property="selectedObjects"
+						  triggerOnKeys="^c" position="10">
+					<y:parameter>
+						<yc:name>actionName</yc:name>
+						<yc:value>label.compareview.action.compareitems</yc:value>
+					</y:parameter>
+					<y:parameter>
+						<yc:name>message</yc:name>
+						<yc:value>#root</yc:value>
+					</y:parameter>
+					<y:parameter>
+						<yc:name>socket</yc:name>
+						<yc:value>selectedItemsToCompare</yc:value>
+					</y:parameter>
+					<y:parameter>
+						<yc:name>enabled</yc:name>
+						<yc:value>#root?.size() > 1</yc:value>
+					</y:parameter>
+					<y:parameter>
+						<yc:name>iconUri</yc:name>
+						<yc:value>compare</yc:value>
+					</y:parameter>
+				</y:action>
+				<y:action id="bulkEditGeneral" action-id="com.hybris.backoffice.widgets.actions.bulkedit"
+						  property="selectedObjects" position="20"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<!--remove actions for Theme -->
+	<context type="Theme" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common" merge-mode="remove">
+			</y:group>
+			<y:group qualifier="bulk" merge-mode="remove">
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context type="DynamicProcessDefinition" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:label>actiongroup.common</y:label>
+				<y:action action-id="com.hybris.cockpitng.action.create">
+					<y:parameter>
+						<yc:name>targetComponent</yc:name>
+						<yc:value>editorArea</yc:value>
+					</y:parameter>
+					<y:parameter>
+						<yc:name>initializeEntity</yc:name>
+						<yc:value>true</yc:value>
+					</y:parameter>
+				</y:action>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context type="Product" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common" show-group-header="false" position="10">
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" merge-mode="REMOVE"/>
+				<y:action action-id="com.hybris.backoffice.widgets.actions.sync" property="selectedObjects"
+						  position="30"/>
+			</y:group>
+			<y:group qualifier="bulk" show-group-header="false" position="20">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.enumeration" property="selectedObjects"
+						  position="10">
+					<y:parameter>
+						<yc:name>qualifier</yc:name>
+						<yc:value>approvalStatus</yc:value>
+					</y:parameter>
+					<y:parameter>
+						<yc:name>actionName</yc:name>
+						<yc:value>bulk.approval</yc:value>
+					</y:parameter>
+				</y:action>
+			</y:group>
+			<y:extended-group qualifier="export" show-group-header="false" position="30">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.export" property="pageable.typeCode"
+						  position="10"/>
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.exporttemplate"
+						  property="pageable.typeCode" position="20"/>
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" property="exportColumnsAndData"
+						  position="30">
+					<y:parameter>
+						<yc:name>actionName</yc:name>
+						<yc:value>label.export.csv</yc:value>
+					</y:parameter>
+				</y:action>
+				<y:extended-action action-id="com.hybris.backoffice.widgets.actions.excel.export" position="40"/>
+			</y:extended-group>
+			<y:group qualifier="import" show-group-header="false" show-separator="false" position="40">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.import" property="pageable.typeCode"
+						  position="10"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context component="explorerTreeActions" type="CatalogVersion">
+		<y:actions>
+			<y:three-dots-group qualifier="common" position="10">
+                <y:action action-id="com.hybris.backoffice.widgets.actions.sync" property="explorerTreeItem" position="10">
+					<y:parameter>
+						<yc:name>viewMode</yc:name>
+						<yc:value>textOnly</yc:value>
+					</y:parameter>
+				</y:action>
+			</y:three-dots-group>
+		</y:actions>
+	</context>
+
+	<context type="Media" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.sync" property="selectedObjects"
+						  position="40"/>
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" merge-mode="REMOVE"/>
+			</y:group>
+			<y:extended-group qualifier="export" show-group-header="false" position="30">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.export" property="pageable.typeCode"
+						  position="10"/>
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.exporttemplate"
+						  property="pageable.typeCode" position="20"/>
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" property="exportColumnsAndData"
+						  position="30">
+					<y:parameter>
+						<yc:name>actionName</yc:name>
+						<yc:value>label.export.csv</yc:value>
+					</y:parameter>
+				</y:action>
+				<y:extended-action action-id="com.hybris.backoffice.widgets.actions.excel.export" position="40"/>
+			</y:extended-group>
+			<y:group qualifier="import" show-group-header="false" show-separator="false" position="40">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.import" property="pageable.typeCode"
+						  position="10"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context type="MediaContainer" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.sync" property="selectedObjects"
+						  position="40"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context type="Category" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.sync" property="selectedObjects"
+						  position="40"/>
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" merge-mode="REMOVE"/>
+			</y:group>
+			<y:extended-group qualifier="export" show-group-header="false" position="30">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.export" property="pageable.typeCode"
+						  position="10"/>
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.exporttemplate"
+						  property="pageable.typeCode" position="20"/>
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" property="exportColumnsAndData"
+						  position="30">
+					<y:parameter>
+						<yc:name>actionName</yc:name>
+						<yc:value>label.export.csv</yc:value>
+					</y:parameter>
+				</y:action>
+				<y:extended-action action-id="com.hybris.backoffice.widgets.actions.excel.export" position="40"/>
+			</y:extended-group>
+			<y:group qualifier="import" show-group-header="false" show-separator="false" position="40">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.import" property="pageable.typeCode"
+						  position="10"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context type="Catalog" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" merge-mode="REMOVE"/>
+			</y:group>
+			<y:extended-group qualifier="export" show-group-header="false" position="30">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.export" property="pageable.typeCode"
+						  position="10"/>
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.exporttemplate"
+						  property="pageable.typeCode" position="20"/>
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" property="exportColumnsAndData"
+						  position="30">
+					<y:parameter>
+						<yc:name>actionName</yc:name>
+						<yc:value>label.export.csv</yc:value>
+					</y:parameter>
+				</y:action>
+				<y:extended-action action-id="com.hybris.backoffice.widgets.actions.excel.export" position="40"/>
+			</y:extended-group>
+			<y:group qualifier="import" show-group-header="false" show-separator="false" position="40">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.import" property="pageable.typeCode"
+						  position="10"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context type="CatalogVersion" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.sync" property="selectedObjects"
+						  position="40"/>
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" merge-mode="REMOVE"/>
+			</y:group>
+			<y:extended-group qualifier="export" show-group-header="false" position="30">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.export" property="pageable.typeCode"
+						  position="10"/>
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.exporttemplate"
+						  property="pageable.typeCode" position="20"/>
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" property="exportColumnsAndData"
+						  position="30">
+					<y:parameter>
+						<yc:name>actionName</yc:name>
+						<yc:value>label.export.csv</yc:value>
+					</y:parameter>
+				</y:action>
+				<y:extended-action action-id="com.hybris.backoffice.widgets.actions.excel.export" position="40"/>
+			</y:extended-group>
+			<y:group qualifier="import" show-group-header="false" show-separator="false" position="40">
+				<y:action action-id="com.hybris.backoffice.widgets.actions.excel.import" property="pageable.typeCode"
+						  position="10"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context type="AbstractConstraint" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:action action-id="com.hybris.cockpitng.action.delete">
+					<y:parameter>
+						<yc:name>notificationSource</yc:name>
+						<yc:value>removedValidations</yc:value>
+					</y:parameter>
+				</y:action>
+				<y:action action-id="com.hybris.cockpitng.action.validation.reload" property="pageable.typeCode"
+						  position="40"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context type="SystemSetupAudit" component="customlistviewactions">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:label>actiongroup.common</y:label>
+				<y:action action-id="com.hybris.cockpitng.listview.action.export.csv" property="exportColumnsAndData"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context type="AuditReportData" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:action action-id="com.hybris.cockpitng.action.create" merge-mode="remove"/>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context type="Workflow" component="customlistviewactions" merge-by="type">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:label>actiongroup.common</y:label>
+				<y:action action-id="com.hybris.cockpitng.action.create" property="pageable.typeCode">
+					<y:parameter>
+						<yc:name>TYPE_CODE</yc:name>
+						<yc:value>com.hybris.backoffice.workflow.wizard.CollaborationWorkflowWizardForm</yc:value>
+					</y:parameter>
+				</y:action>
+			</y:group>
+		</y:actions>
+	</context>	
+	
+	
+   <context component="custom-explorer-tree" module="trainingbackoffice"
+		merge-by="module">
+		<et:explorer-tree>
+			<et:navigation-node id=" Hybris Custom Node">
+				<et:type-node code="HybrisCurrencyConversion"
+					id="HybrisCurrencyConversion" />
+			</et:navigation-node>
+		</et:explorer-tree>
+	</context>
+	<!-- Notification Area -->
+	<context component="notification-area">
+		<na:notification-area>
+			<na:notifications
+				eventType="trainingbackoffice.confirmpickup.event" level="SUCCESS">
+				<na:message>hmc.action.confirmpickup.success</na:message>
+			</na:notifications>
+		</na:notification-area>
+	</context>
+	
+	
+	
+ <!-- other BO Tasks --> 
+	<context merge-by="type" type="Customer"
+		component="custom-editor-area">
+		<editorArea:editorArea>
+			<editorArea:tab name="hmc.tab.customer.custom"
+				position="1">
+				<editorArea:section
+					name="hmc.section.customer.attributes">
+					<editorArea:attribute qualifier="surname"
+						type="java.lang.String" />
+					<editorArea:attribute qualifier="age"
+						type="java.lang.String" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+	<!-- 2nd task -->
+	<!-- Custom ExplorerTree Node -->
+
+	<!--section for Creating a node with name My_CustomNode starts here -->
+	<context component="custom-explorer-tree" module="trainingbackoffice"
+		merge-by="module">
+		<et:explorer-tree>
+			<et:navigation-node id="MyCustomNode">
+				<et:type-node code="CustomNode" id="CustomNode" />
+			</et:navigation-node>
+		</et:explorer-tree>
+	</context>
+	<!--Attributes to be displayed in list view starts here -->
+	<context type="CustomNode" component="custom-listview" merge-by="type"
+		parent="GenericItem">
+		<lv:list-view>
+			<lv:column qualifier="code" />
+			<lv:column qualifier="name" />
+			<lv:column qualifier="description" />
+		</lv:list-view>
+	</context>
+	<!--section for Creating a tab with name CustomNode starts here -->
+	<context merge-by="type" type="CustomNode"
+		component="custom-editor-area">
+		<editorArea:editorArea>
+			<editorArea:tab name="hmc.tab.customnode.mytab"
+				position="0">
+				<editorArea:section
+					name="hmc.section.customnode.mysection">
+					<editorArea:attribute qualifier="code" />
+					<editorArea:attribute qualifier="name" />
+					<editorArea:attribute qualifier="description" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+	<!--section for Advanced Search starts here -->
+	<context type="CustomNode" component="custom-advanced-search"
+		merge-by="type" parent="GenericItem">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code"
+					operator="equals" selected="true" />
+				<as:field name="name"
+					operator="equals" selected="true" />
+				<as:field name="description"
+					operator="equals" selected="true" />
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+	<!--section for Simple Search starts here -->
+	<context type="CustomNode" component="custom-simple-search"
+		merge-by="type" parent="GenericItem">
+		<ss:simple-search>
+			<ss:field name="code" />
+		</ss:simple-search>
+	</context>
+	
+	<!-- List view table column header -->
+	<context type="HybrisCurrencyConversion" merge-by="type"
+		component="custom-listview">
+		<lv:list-view>
+			<lv:column qualifier="conversionDate" />
+			<lv:column qualifier="conversionRate" />
+			<lv:column qualifier="fromCurrency" />
+			<lv:column qualifier="toCurrency" />
+		</lv:list-view>
+	</context>
+
+
+	<context component="create-wizard"
+		type="HybrisCurrencyConversion">
+		<wz:flow
+			xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+			id="currencyConversionRateWizard"
+			title="create.currencyconversionrate.general.label">
+			<wz:prepare id="newCurrencyConversionRate">
+				<wz:initialize property="currencyConversionRate"
+					type="HybrisCurrencyConversion" />
+			</wz:prepare>
+			<wz:step id="step1">
+				<wz:content id="step1.content">
+					<wz:property-list root="currencyConversionRate">
+						<wz:property qualifier="fromCurrency" />
+						<wz:property qualifier="toCurrency" />
+						<wz:property qualifier="conversionRate" />
+						<wz:property qualifier="conversionDate" />
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel />
+					<wz:done>
+						<wz:save property="currencyConversionRate" />
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+</config>
