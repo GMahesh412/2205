@@ -6,6 +6,7 @@ package com.techdenali.test.constants;
 /**
  * 
  */
+//hello
 public class TrainingTestConstants extends GeneratedTrainingTestConstants
 {
 
